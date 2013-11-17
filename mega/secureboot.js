@@ -160,7 +160,7 @@ function evalscript(text)
 	var script = document.createElement('script');  
 	script.type = "text/javascript";
 	document.getElementsByTagName('head')[0].appendChild(script);				
-	script.text = text;		
+	script.text = text;
 }
 
 function evalscript_url(jarray)
@@ -237,9 +237,9 @@ sh1['lang/th_3.json'] = [1882714715,-1188427177,-996865414,-444432050,-797845776
 sh1['lang/tr_3.json'] = [607286237,1607975063,113209367,-845045892,-1883456832,206250155,-1438923155,-1716172418];
 sh1['lang/uk_3.json'] = [1496045698,-875032662,255052542,528786549,1868153620,-270943257,-1235421451,1742209716];
 sh1['lang/vn_4.json'] = [2124634712,-486027011,1008126502,1342525481,1959468242,-2076636719,1654678016,610791138];
-sh1['js/crypto_1.js'] = [-1295022275,-863196459,1058503506,-298862044,371970064,1577690953,894355058,262348713];
+sh1['js/crypto_2.js'] = [-2143720744,403134843,755815093,-1612141733,-853971182,1793191595,777886083,544858872];
 sh1['js/hex_1.js'] = [-536915967,1050992997,-349767130,933847197,-1115174222,701434549,2060891637,583948869];
-sh1['js/functions_2.js'] = [-1471912770,890924376,-509015144,-515951633,1633773802,367137593,-1774551985,-230259887];
+sh1['js/functions_3.js'] = [791625235,527635630,-1571635721,-975640925,-1604210712,-374210429,-1667832925,1422465165];
 sh1['sjcl_1.js'] = [-171772505,-264193555,357626960,-1993441797,930271978,2002120912,114344546,1757807051];
 sh1['js/rsa_1.js'] = [2001167291,-526423915,1610203002,735871105,-288977147,281057591,529538147,-1392450329];
 sh1['js/keygen_1.js'] = [1782191324,1257655688,1757987168,-20394106,600299018,741954078,-1296374862,880480498];
@@ -252,16 +252,16 @@ sh1['js/jquery_1.mousewheel_1.js'] = [419443382,498952370,-461812839,-1430788648
 sh1['js/jquery_1.jscrollpane_1.min_1.js'] = [583598005,462966044,1887098753,-1983543464,-242256649,-1811511069,-672958697,539968991];
 sh1['js/mDB_1.js'] = [690969168,-1584732952,-1381207686,375104255,1185650542,415470449,1270554324,1951672327];
 sh1['js/cleartemp_1.js'] = [-1435315431,-504958400,-1299986533,-2131880267,1621215344,-260309969,1783791614,-1041076437];
-sh1['js/download_1.js'] = [1553652396,1074541624,-138212109,-1209626808,-30075902,1245018337,-1351310514,1916756523];
+sh1['js/download_2.js'] = [289647798,1782497405,1762140327,-519291852,1433476801,-1852507773,-1166854981,-804534108];
 sh1['js/upload_1.js'] = [752641128,-1831645579,-1276485260,119437522,827810598,1432778916,706122681,1401462536];
 sh1['js/thumbnail_1.js'] = [-2030564155,-239849500,624444766,2023385969,839463814,-133942573,81212555,-474294440];
 sh1['js/exif_1.js'] = [2127927006,1524719511,1400765672,1465825710,200238308,-1521506870,-1440098631,1093047888];
 sh1['js/megapix_1.js'] = [-2074411783,2020004429,1567898609,1572790112,1765406939,1129455141,-1408675606,376735130];
 sh1['js/user_1.js'] = [-337098306,505255662,-636193479,-1334187505,243359630,1332448959,-1345609907,469353407];
-sh1['js/mega_8.js'] = [1190022230,994453365,-796470378,1817645897,-994121090,1305031334,570677989,-1980891458];
-sh1['js/fm_7.js'] = [1037606152,1964874956,-386604416,-858690991,511278707,-145844754,-1741576039,1373858342];
+sh1['js/mega_10.js'] = [-1673210735,-634713203,-1037328408,-449715505,170301172,213177455,-331505562,1116344043];
+sh1['js/fm_8.js'] = [-919095900,-2103349315,-217270830,218186477,-1044354052,-1631461549,-817866780,-1102869795];
 sh1['js/filetypes_1.js'] = [-2004716670,-1373728880,1047132770,1093552641,753943807,-1604535943,2089948576,-157774441];
-sh1['index_4.js'] = [-480669676,1270832066,1590874439,565733243,403003056,-1821088035,-750288954,262234657];
+sh1['index_5.js'] = [-1479420365,109886095,-617249036,1523824007,649644319,2075007722,425683545,510716266];
 sh1['html/start_1.html'] = [-115483490,-1988371591,623765306,1373860361,-1360669345,-1736966814,1562448017,152309359];
 sh1['html/megainfo_1.html'] = [1283161678,-378542460,-1112156493,-1449961420,-1938669644,1416380795,-1948258844,296655369];
 sh1['html/js/start_2.js'] = [-592492848,375152620,-791072191,910951958,-436683953,-391896453,723058460,-1878099312];
@@ -276,7 +276,7 @@ sh1['html/fm_2.html'] = [-1389507451,-1177323770,-1970950760,494359571,-12140963
 sh1['html/top_2.html'] = [-1770478820,1726274722,-2114972594,2103677983,517685593,-408565231,-1906509990,-68966292];
 sh1['js/notifications_3.js'] = [1040041020,559125891,2048731207,582260029,-455379405,-2062711449,-604434972,957094856];
 sh1['js/json_1.js'] = [260740289,1366618322,-425421514,1426645344,1815060041,-1445234843,-570158005,-1264018126];
-sh1['css/style_4.css'] = [-1844498347,-417286915,-21530475,1459144502,-1842179789,-1340462532,-970258650,1654466666];
+sh1['css/style_5.css'] = [64111379,1843839808,-576781311,-777872350,1156088323,2124429476,928470340,50758803];
 sh1['js/avatar_2.js'] = [750148219,282183943,-583076708,810613429,1535288862,295436910,-1599455014,-411830628];
 sh1['js/countries_1.js'] = [-1429991108,-360077332,2087722987,830335793,940682070,-184269370,-807595443,666823178];
 sh1['html/dialogs_2.html'] = [1118701823,-1534031600,-179639299,736856992,417465368,-1917139475,-382793251,1651710513];
@@ -285,24 +285,24 @@ sh1['js/checkboxes_1.js'] = [-195352914,863026783,-2091572807,-1241952814,178358
 sh1['js/zip_1.js'] = [-1618111477,-1761114523,-343688170,1955237114,-58685565,-323072713,-1209908562,1215236581];
 sh1['html/about_1.html'] = [782112587,1179009629,1677079796,1338742256,1885630127,-1480240665,2141820954,-1853719352];
 sh1['html/blog_1.html'] = [1453324238,23247104,-274962730,2125218305,-1007634292,-1966696579,1809666485,2006232635];
-sh1['html/js/blog_3.js'] = [1913382679,584521817,-1513541325,-1658985099,-258982682,563609553,501481563,869346649];
+sh1['html/js/blog_5.js'] = [634695810,1568681764,-1696020340,918572715,151996743,-1770660376,-1700422810,-2025403752];
 sh1['html/blogarticle_1.html'] = [514255285,-305518940,-736361270,-1089096585,807920439,-1691607347,-1360211852,331878126];
 sh1['html/js/blogarticle_1.js'] = [1749908144,268653485,1111265580,-1918305290,-1989480138,-275610585,-258647333,-1927257643];
 sh1['html/register_1.html'] = [-1153226879,789196380,513797998,-1455035350,-1267405269,-1114290361,-510053649,1808415441];
 sh1['html/js/register_1.js'] = [1883638582,963779936,1751792852,1008949133,-364605760,-2130564965,-673561825,134881206];
-sh1['html/android_1.html'] = [22957059,1068633023,139661732,-1078285492,-709669738,719158124,-1924103579,-1889753428];
-sh1['html/forgotpassword_1.html'] = [-1444927242,-1862174062,438781864,1226178959,1684474621,1484230121,1479378353,-1590444217];
-sh1['html/js/forgotpassword_1.js'] = [588330978,746368676,525975811,1978796330,1511377035,1458310780,-648132398,396197890];
+sh1['html/android_2.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
+sh1['html/forgotpassword_2.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
+sh1['html/js/forgotpassword_2.js'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
 sh1['html/resellers_1.html'] = [-1546201326,-1292116690,-1709826847,926166260,-261373313,111524771,2009838544,-792794620];
 sh1['html/download_1.html'] = [-106025208,804474410,-1641503728,-1942480205,-230051838,1592805494,1728481599,-118443693];
-sh1['html/js/download_2.js'] = [-995457997,-70754035,-1987564738,-1554829760,-854149170,1470899461,-1434046206,409614199];
+sh1['html/js/download_3.js'] = [-1066319356,-823340967,364801037,-135685187,949360440,62503100,-1026608808,673607032];
 sh1['html/copyright_1.html'] = [-1356115298,204388844,1433799516,1808859064,1547511974,1218829359,791662145,330338831];
 sh1['html/copyrightnotice_2.html'] = [2145667044,-154231214,2034877807,-1128384234,-1416518879,-436127618,1781667026,1515564098];
 sh1['html/js/copyrightnotice_1.js'] = [1973579369,329527753,-390047352,1474663949,-222071641,889758868,955457139,-1296592009];
 sh1['html/privacy_1.html'] = [-1306903122,1121626582,-131561918,2030506582,-1212117415,661170141,-2091853461,-67213485];
 sh1['html/terms_1.html'] = [-34273725,1778536335,-1929367173,609688965,-1887772001,-1603517551,-1148230796,518199998];
 sh1['html/credits_2.html'] = [-93209830,1787816001,1947296144,-993677008,-864037760,265442585,717054271,1195813928];
-sh1['html/takedown_1.html'] = [557403505,700415025,-133221392,2121581368,-386018889,-1469504080,2118301720,-1902571043];
+sh1['html/takedown_2.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
 sh1['html/dev_1.html'] = [1732632856,189977356,-2090647731,966313756,-172320705,-2097569904,-1732212604,-296379577];
 sh1['js/arkanoid_1.js'] = [1142088038,-111380889,1851124971,-135552288,979716897,-676254465,-315264165,-6027613];
 sh1['html/js/dev_1.js'] = [-467451688,1492882892,-1501648081,-2129952605,808295402,-1866184681,408148389,1885732291];
@@ -311,7 +311,7 @@ sh1['html/help_1.html'] = [1007983405,1164966407,778291426,42410635,-126766717,-
 sh1['html/js/help_1.js'] = [1632875130,-833764675,-1833513886,-1143087943,-454121185,-1888235180,-1908935257,977088126];
 sh1['html/firefox_1.html'] = [1269940382,-2014144920,485363891,-726217767,-1040783327,1453164378,-554814229,1924716537];
 sh1['html/sync_1.html'] = [-449633026,-1292014254,-990701586,-598443758,798589485,1799246001,-61131538,-1510258349];
-sh1['html/mobile_1.html'] = [1052461203,-993292618,-1067567038,417829784,-810336140,-1261317261,1371329083,-483556662];
+sh1['html/mobile_2.html'] = [-1209492308,190265798,-2065194360,119679600,617738629,1836199426,600788883,-1944592830];
 sh1['html/affiliates_1.html'] = [336401600,1693520652,1735292706,-1209900216,563312832,-1571723333,-1431169166,1080433821];
 sh1['html/js/affiliate_1.js'] = [-2083445994,-813363093,1773568937,-2058604050,-2131904228,1402769154,442423551,-1045573347];
 sh1['html/affiliateterms_1.html'] = [-1570316327,-322124229,694130498,-1574459080,-1017936673,73113243,199122537,5117026];
@@ -427,23 +427,26 @@ var silent_loading=false;
 if (m)
 {
 	var ua = window.navigator.userAgent.toLowerCase();
-	var app;	
+	var app,mobileblog,android,ios;
 	var link = document.createElement('link');
 	link.setAttribute('rel', 'stylesheet');
 	link.type = 'text/css';
-	link.href = staticpath + 'css/mobile-app.css';
+	link.href = staticpath + 'css/mobile-app.css';	
 	document.head.appendChild(link);	
-	document.body.innerHTML = '<div class="main-scroll-block"> <div class="main-content-block"> <div class="free-green-tip"></div><div class="main-centered-bl"><div class="main-logo"></div><div class="main-head-txt" id="m_title"></div><div class="main-txt" id="m_desc"></div><a href="" class="main-button" id="m_appbtn"></a><div class="main-social hidden"><a href="https://www.facebook.com/MEGAprivacy" class="main-social-icon facebook"></a><a href="https://www.twitter.com/MEGAprivacy" class="main-social-icon twitter"></a><div class="clear"></div></div></div> </div><div class="scrolling-content"><div class="mid-logo"></div> <div class="mid-gray-block">MEGA provides free cloud storage with convenient and powerful always-on privacy </div> <div class="scrolling-block-icon encription"></div> <div class="scrolling-block-header"> End-to-end encryption </div> <div class="scrolling-block-txt">Unlike other cloud storage providers, your data is encrypted & decrypted during transfer by your client devices only and never by us. </div> <div class="scrolling-block-icon access"></div> <div class="scrolling-block-header"> Secure Global Access </div> <div class="scrolling-block-txt">Your data is accessible any time, from any device, anywhere. Only you control the keys to your files.</div> <div class="scrolling-block-icon colaboration"></div> <div class="scrolling-block-header"> Secure Collaboration </div> <div class="scrolling-block-txt">Share folders with your contacts and see their updates in real time. Online collaboration has never been more private and secure.</div> <div class="bottom-menu full-version"><div class="copyright-txt">Mega Limited 2013</div><div class="language-block"><div class="select-box"> <span class="select-txt" id="sel_txt2">English</span><select id="sel_txt2_option" name="custom"></select></div></div><div class="clear"></div><iframe src="" width="1" height="1" frameborder="0" style="width:1px; height:1px;border:none;" seamless="seamless" id="m_iframe"></iframe></div></div></div>';
+	document.body.innerHTML = '<div class="main-scroll-block"> <div class="main-content-block"> <div class="free-green-tip"></div><div class="main-centered-bl"><div class="main-logo"></div><div class="main-head-txt" id="m_title"></div><div class="main-txt" id="m_desc"></div><a href="" class="main-button" id="m_appbtn"></a><div class="main-social hidden"><a href="https://www.facebook.com/MEGAprivacy" class="main-social-icon facebook"></a><a href="https://www.twitter.com/MEGAprivacy" class="main-social-icon twitter"></a><div class="clear"></div></div></div> </div><div class="scrolling-content"><div class="mid-logo"></div> <div class="mid-gray-block">MEGA provides free cloud storage with convenient and powerful always-on privacy </div> <div class="scrolling-block-icon encription"></div> <div class="scrolling-block-header"> End-to-end encryption </div> <div class="scrolling-block-txt">Unlike other cloud storage providers, your data is encrypted & decrypted during transfer by your client devices only and never by us. </div> <div class="scrolling-block-icon access"></div> <div class="scrolling-block-header"> Secure Global Access </div> <div class="scrolling-block-txt">Your data is accessible any time, from any device, anywhere. Only you control the keys to your files.</div> <div class="scrolling-block-icon colaboration"></div> <div class="scrolling-block-header"> Secure Collaboration </div> <div class="scrolling-block-txt">Share folders with your contacts and see their updates in real time. Online collaboration has never been more private and secure.</div> <div class="bottom-menu full-version"><div class="copyright-txt">Mega Limited 2013</div><div class="language-block"><div class="select-box"> <span class="select-txt" id="sel_txt2">English</span><select id="sel_txt2_option" name="custom"></select></div></div><div class="clear"></div><iframe src="" width="1" height="1" frameborder="0" style="width:1px; height:1px; border:none;" id="m_iframe"></iframe></div></div></div>';	
+	if (window.location.hash.substr(1,4) == 'blog') mobileblog=1;	
 	if (ua.indexOf('android') > -1)
-	{
-		app='https://play.google.com/store/apps/details?id=com.flyingottersoftware.mega';
+	{		
+		app='https://play.google.com/store/apps/details?id=com.flyingottersoftware.mega';		
 		document.body.className = 'android full-mode supported';
+		android=1;
 	}	
 	else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1 || ua.indexOf('ipod') > -1)
 	{
 		document.body.className = 'ios full-mode unsupported';
 		document.getElementById('m_title').innerHTML = 'Our iOS app is currently with Apple for review.';
 		document.getElementById('m_desc').innerHTML = 'Follow us on witter or Facebook for updates.';
+		ios=1;
 	}
 	else document.body.className = 'another-os full-mode unsupported';	
 	if (app)
@@ -454,19 +457,39 @@ if (m)
 	else
 	{
 		document.getElementById('m_title').innerHTML = 'A dedicated app for your device will be available soon.';
-		document.getElementById('m_desc').innerHTML = 'Follow us on witter or Facebook for updates.';	
+		document.getElementById('m_desc').innerHTML = 'Follow us on Twitter or Facebook for updates.';	
 	}
 	if (window.location.hash.substr(1,1) == '!')
 	{
-		if (app) document.getElementById('m_title').innerHTML = 'Install the free MEGA app to access this file from your mobile';		
-		document.getElementById('m_iframe').src = 'mega://' + window.location.hash;
+		if (app) document.getElementById('m_title').innerHTML = 'Install the free MEGA app to access this file from your mobile';				
+		if (ua.indexOf('chrome') > -1)
+		{
+			setTimeout(function()
+			{
+				if (confirm('Do you already have the MEGA app installed?')) document.location = 'mega://' + window.location.hash;				
+			},2500);			
+		}
+		else document.getElementById('m_iframe').src = 'mega://' + window.location.hash;
 	}
 	else if (window.location.hash.substr(1,7) == 'confirm')
 	{
 		var i=0;
-		if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1 || ua.indexOf('ipod') > -1) i=1;
-		document.getElementById('m_iframe').src = 'mega://' + window.location.hash.substr(i);
+		if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1 || ua.indexOf('ipod') > -1) i=1;		
+		if (ua.indexOf('chrome') > -1) window.location ='mega://' + window.location.hash.substr(i);
+		else document.getElementById('m_iframe').src = 'mega://' + window.location.hash.substr(i);
+	}	
+	if (mobileblog)
+	{
+		document.body.innerHTML = '';
+		var script = document.createElement('script');  
+		script.type = "text/javascript";
+		document.head.appendChild(script);
+		script.src = 'https://mega.co.nz/blog.js';
 	}
+}
+else if (document.location.hash == '#android')
+{
+	document.location = 'https://play.google.com/store/apps/details?id=com.flyingottersoftware.mega';
 }
 else 
 {
@@ -485,8 +508,7 @@ else
 			for (var l in l2) for (b in l2[l]) if (l2[l][b] == bl) return l;
 			for (var l in l2) for (b in l2[l]) if (l2[l][b].substring(0,3)==bl.substring(0,3)) return l;
 			return 'en';
-		}	
-		
+		}		
 		var init_f = [];
 		var lang = detectlang();
 		if ((typeof localStorage != 'undefined') && (localStorage.lang)) if (languages[localStorage.lang]) lang = localStorage.lang;		
@@ -495,9 +517,9 @@ else
 		var jsl = []
 		
 		jsl.push({f:'lang/' + lang + langv + '.json', n: 'lang', j:3});
-		jsl.push({f:'js/crypto_1.js', n: 'crypto_js', j:1,w:5});
+		jsl.push({f:'js/crypto_2.js', n: 'crypto_js', j:1,w:5});
 		jsl.push({f:'js/hex_1.js', n: 'hex_js', j:1});
-		jsl.push({f:'js/functions_2.js', n: 'functions_js', j:1});
+		jsl.push({f:'js/functions_3.js', n: 'functions_js', j:1});
 		jsl.push({f:'sjcl_1.js', n: 'sjcl_js', j:1});
 		jsl.push({f:'js/rsa_1.js', n: 'rsa_js', j:1});
 		jsl.push({f:'js/keygen_1.js', n: 'keygen_js', j:1});
@@ -510,16 +532,16 @@ else
 		jsl.push({f:'js/jquery_1.jscrollpane_1.min_1.js', n: 'jscrollpane_js', j:1});
 		jsl.push({f:'js/mDB_1.js', n: 'mDB_js', j:1});
 		jsl.push({f:'js/cleartemp_1.js', n: 'cleartemp_js', j:1});
-		jsl.push({f:'js/download_1.js', n: 'dl_js', j:1,w:3});
+		jsl.push({f:'js/download_2.js', n: 'dl_js', j:1,w:3});
 		jsl.push({f:'js/upload_1.js', n: 'upload_js', j:1,w:2});
 		jsl.push({f:'js/thumbnail_1.js', n: 'thumbnail_js', j:1});
 		jsl.push({f:'js/exif_1.js', n: 'exif_js', j:1,w:3});
 		jsl.push({f:'js/megapix_1.js', n: 'megapix_js', j:1});
 		jsl.push({f:'js/user_1.js', n: 'user_js', j:1});
-		jsl.push({f:'js/mega_8.js', n: 'mega_js', j:1,w:7});
-		jsl.push({f:'js/fm_7.js', n: 'fm_js', j:1,w:12});
+		jsl.push({f:'js/mega_10.js', n: 'mega_js', j:1,w:7});
+		jsl.push({f:'js/fm_8.js', n: 'fm_js', j:1,w:12});
 		jsl.push({f:'js/filetypes_1.js', n: 'filetypes_js', j:1});
-		jsl.push({f:'index_4.js', n: 'index', j:1,w:4});
+		jsl.push({f:'index_5.js', n: 'index', j:1,w:4});
 		jsl.push({f:'html/start_1.html', n: 'start', j:0});
 		jsl.push({f:'html/megainfo_1.html', n: 'megainfo', j:0});
 		jsl.push({f:'html/js/start_2.js', n: 'start_js', j:1});
@@ -534,7 +556,7 @@ else
 		jsl.push({f:'html/top_2.html', n: 'top', j:0});
 		jsl.push({f:'js/notifications_3.js', n: 'notifications_js', j:1});		
 		if (typeof JSON == 'undefined') jsl.push({f:'js/json_1.js', n: 'json', j:1});
-		jsl.push({f:'css/style_4.css', n: 'style_css', j:2,w:30,c:1,d:1,cache:1});		
+		jsl.push({f:'css/style_5.css', n: 'style_css', j:2,w:30,c:1,d:1,cache:1});		
 		jsl.push({f:'js/avatar_2.js', n: 'avatar_js', j:1,w:3});
 		jsl.push({f:'js/countries_1.js', n: 'countries_js', j:1});
 		jsl.push({f:'html/dialogs_2.html', n: 'dialogs', j:0,w:2});
@@ -545,24 +567,24 @@ else
 		{
 			'about': {f:'html/about_1.html', n: 'about', j:0},
 			'blog': {f:'html/blog_1.html', n: 'blog', j:0},
-			'blog_js': {f:'html/js/blog_3.js', n: 'blog_js', j:1},		
+			'blog_js': {f:'html/js/blog_5.js', n: 'blog_js', j:1},		
 			'blogarticle': {f:'html/blogarticle_1.html', n: 'blogarticle', j:0},
 			'blogarticle_js': {f:'html/js/blogarticle_1.js', n: 'blogarticle_js', j:1},		
 			'register': {f:'html/register_1.html', n: 'register', j:0},
 			'register_js': {f:'html/js/register_1.js', n: 'register_js', j:1},
-			'android': {f:'html/android_1.html', n: 'android', j:0},		
-			'forgotpassword': {f:'html/forgotpassword_1.html', n: 'forgotpassword', j:0},
-			'forgotpassword_js': {f:'html/js/forgotpassword_1.js', n: 'forgotpassword_js', j:1},
+			'android': {f:'html/android_2.html', n: 'android', j:0},		
+			'forgotpassword': {f:'html/forgotpassword_2.html', n: 'forgotpassword', j:0},
+			'forgotpassword_js': {f:'html/js/forgotpassword_2.js', n: 'forgotpassword_js', j:1},
 			'resellers': {f:'html/resellers_1.html', n: 'resellers', j:0},
 			'download': {f:'html/download_1.html', n: 'download', j:0},
-			'download_js': {f:'html/js/download_2.js', n: 'download_js', j:1},
+			'download_js': {f:'html/js/download_3.js', n: 'download_js', j:1},
 			'copyright': {f:'html/copyright_1.html', n: 'copyright', j:0},
 			'copyrightnotice': {f:'html/copyrightnotice_2.html', n: 'copyrightnotice', j:0},
 			'copyrightnotice_js': {f:'html/js/copyrightnotice_1.js', n: 'copyrightnotice_js', j:1},
 			'privacy': {f:'html/privacy_1.html', n: 'privacy', j:0},
 			'terms': {f:'html/terms_1.html', n: 'terms', j:0},
 			'credits': {f:'html/credits_2.html', n: 'credits', j:0},
-			'takedown': {f:'html/takedown_1.html', n: 'takedown', j:0},
+			'takedown': {f:'html/takedown_2.html', n: 'takedown', j:0},
 			'dev': {f:'html/dev_1.html', n: 'dev', j:0},
 			'arkanoid_js': {f:'js/arkanoid_1.js', n: 'arkanoid_js', j:1},
 			'dev_js': {f:'html/js/dev_1.js', n: 'dev_js', j:1},		
@@ -571,7 +593,7 @@ else
 			'help_js': {f:'html/js/help_1.js', n: 'help_js', j:1},
 			'firefox': {f:'html/firefox_1.html', n: 'firefox', j:0},
 			'sync': {f:'html/sync_1.html', n: 'sync', j:0},
-			'mobile': {f:'html/mobile_1.html', n: 'mobile', j:0},
+			'mobile': {f:'html/mobile_2.html', n: 'mobile', j:0},
 			'affiliates': {f:'html/affiliates_1.html', n: 'affiliates', j:0},
 			'affiliate_js': {f:'html/js/affiliate_1.js', n: 'affiliate_js', j:0},
 			'affiliateterms': {f:'html/affiliateterms_1.html', n: 'affiliateterms', j:0},
@@ -581,9 +603,6 @@ else
 			'affiliatemember_js': {f:'html/js/affiliatemember_1.js', n: 'affiliatemember_js', j:1},
 			'contact': {f:'html/contact_1.html', n: 'contact', j:0},
 			'privacycompany': {f:'html/privacycompany_1.html', n: 'privacycompany', j:0},
-			'resellerapp': {f:'html/resellerapp_1.html', n: 'resellerapp', j:0},
-			'resellerapp_js': {f:'html/js/resellerapp_1.js', n: 'resellerapp_js', j:1},		
-			'resellerintro': {f:'html/resellerintro_1.html', n: 'resellerintro', j:0},
 			'chrome': {f:'html/chrome_1.html', n: 'chrome', j:0},
 			'zxcvbn_js': {f:'js/zxcvbn_1.js', n: 'zxcvbn_js', j:1}
 		};	
@@ -595,7 +614,6 @@ else
 			'blog': ['blog','blog_js','blogarticle','blogarticle_js'],
 			'register': ['register','register_js'],
 			'android': ['android'],
-			'resetpassword': ['forgotpassword','forgotpassword_js'],
 			'resellers': ['resellers'],
 			'!': ['download','download_js'],
 			'copyright': ['copyright'],
@@ -611,8 +629,6 @@ else
 			'sdk': ['dev','dev_js','sdkterms'],
 			'doc': ['dev','dev_js','sdkterms'],
 			'help': ['help','help_js'],
-			'resellerapp': ['resellerapp','resellerapp_js'],
-			'resellerintro': ['resellerintro'],
 			'chrome': ['chrome'],
 			'plugin': ['chrome','firefox'],
 			'affiliate': ['affiliates','affiliateterms','affiliatesignup','affiliatesignup_js','affiliatemember','affiliatemember_js','affiliate_js']
