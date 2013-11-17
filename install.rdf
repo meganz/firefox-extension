@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="firefox@mega.co.nz"
+                   em:type="2"
+                   em:name="MEGA"
+                   em:version="2.0.39"
+                   em:creator="Mega Limited"
+                   em:description="Secure Cloud Storage"
+                   em:homepageURL="https://mega.co.nz/"
+                   em:bootstrap="true"
+                   em:updateURL="http://eu.static.mega.co.nz/update.rdf"
+                   em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDb6ilOXeuKlG+zGEtJh0qKoI/n2SwiOEl1VsLfUz/OVMNsvHUFBLgsUWNZ32T3nVBmf4e67X4nKqqxmQu363ntOey5zG8fGoCcEOjj7LTlYbAc9WVa7OVpZVi7MhQ5T9P20uZMNSXnBs6HKi5Q0BAOd0w732IuQt4RuVQLPQvqeQIDAQAB">
+    <em:targetApplication RDF:resource="rdf:#$41ioP1"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$41ioP1"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="7.0"
+                   em:maxVersion="30.*" />
+</RDF:RDF>
