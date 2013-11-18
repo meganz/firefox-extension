@@ -258,10 +258,10 @@ sh1['js/thumbnail_1.js'] = [-2030564155,-239849500,624444766,2023385969,83946381
 sh1['js/exif_1.js'] = [2127927006,1524719511,1400765672,1465825710,200238308,-1521506870,-1440098631,1093047888];
 sh1['js/megapix_1.js'] = [-2074411783,2020004429,1567898609,1572790112,1765406939,1129455141,-1408675606,376735130];
 sh1['js/user_1.js'] = [-337098306,505255662,-636193479,-1334187505,243359630,1332448959,-1345609907,469353407];
-sh1['js/mega_10.js'] = [-1673210735,-634713203,-1037328408,-449715505,170301172,213177455,-331505562,1116344043];
-sh1['js/fm_8.js'] = [-919095900,-2103349315,-217270830,218186477,-1044354052,-1631461549,-817866780,-1102869795];
+sh1['js/mega_11.js'] = [-907491073,1624814802,1667952743,-1012465335,-1605949882,1890089141,-493120623,-615670069];
+sh1['js/fm_9.js'] = [-2108507273,51842708,-342435595,-1054054050,-1088116124,-1588101086,-1625771084,-1031590735];
 sh1['js/filetypes_1.js'] = [-2004716670,-1373728880,1047132770,1093552641,753943807,-1604535943,2089948576,-157774441];
-sh1['index_5.js'] = [-1479420365,109886095,-617249036,1523824007,649644319,2075007722,425683545,510716266];
+sh1['index_6.js'] = [-1300867845,1103637512,887639505,650496329,-1890973768,1282508824,1976928995,226744805];
 sh1['html/start_1.html'] = [-115483490,-1988371591,623765306,1373860361,-1360669345,-1736966814,1562448017,152309359];
 sh1['html/megainfo_1.html'] = [1283161678,-378542460,-1112156493,-1449961420,-1938669644,1416380795,-1948258844,296655369];
 sh1['html/js/start_2.js'] = [-592492848,375152620,-791072191,910951958,-436683953,-391896453,723058460,-1878099312];
@@ -276,10 +276,10 @@ sh1['html/fm_2.html'] = [-1389507451,-1177323770,-1970950760,494359571,-12140963
 sh1['html/top_2.html'] = [-1770478820,1726274722,-2114972594,2103677983,517685593,-408565231,-1906509990,-68966292];
 sh1['js/notifications_3.js'] = [1040041020,559125891,2048731207,582260029,-455379405,-2062711449,-604434972,957094856];
 sh1['js/json_1.js'] = [260740289,1366618322,-425421514,1426645344,1815060041,-1445234843,-570158005,-1264018126];
-sh1['css/style_5.css'] = [64111379,1843839808,-576781311,-777872350,1156088323,2124429476,928470340,50758803];
+sh1['css/style_6.css'] = [-1452942968,-376616764,-9043334,-1164967736,779095103,-1022013689,-243657896,588060631];
 sh1['js/avatar_2.js'] = [750148219,282183943,-583076708,810613429,1535288862,295436910,-1599455014,-411830628];
 sh1['js/countries_1.js'] = [-1429991108,-360077332,2087722987,830335793,940682070,-184269370,-807595443,666823178];
-sh1['html/dialogs_2.html'] = [1118701823,-1534031600,-179639299,736856992,417465368,-1917139475,-382793251,1651710513];
+sh1['html/dialogs_3.html'] = [1281626815,-154212263,-535430370,-847813696,-257262573,973790684,741026977,2063447660];
 sh1['html/transferwidget_1.html'] = [-216975656,-1571397997,-554252428,-1729669574,-889100419,-1745475319,-1947087299,913285129];
 sh1['js/checkboxes_1.js'] = [-195352914,863026783,-2091572807,-1241952814,1783587100,-1585752649,789053172,-1960773071];
 sh1['js/zip_1.js'] = [-1618111477,-1761114523,-343688170,1955237114,-58685565,-323072713,-1209908562,1215236581];
@@ -290,19 +290,19 @@ sh1['html/blogarticle_1.html'] = [514255285,-305518940,-736361270,-1089096585,80
 sh1['html/js/blogarticle_1.js'] = [1749908144,268653485,1111265580,-1918305290,-1989480138,-275610585,-258647333,-1927257643];
 sh1['html/register_1.html'] = [-1153226879,789196380,513797998,-1455035350,-1267405269,-1114290361,-510053649,1808415441];
 sh1['html/js/register_1.js'] = [1883638582,963779936,1751792852,1008949133,-364605760,-2130564965,-673561825,134881206];
-sh1['html/android_2.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
-sh1['html/forgotpassword_2.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
-sh1['html/js/forgotpassword_2.js'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
+sh1['html/android_3.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
+sh1['html/forgotpassword_3.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
+sh1['html/js/forgotpassword_3.js'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
 sh1['html/resellers_1.html'] = [-1546201326,-1292116690,-1709826847,926166260,-261373313,111524771,2009838544,-792794620];
 sh1['html/download_1.html'] = [-106025208,804474410,-1641503728,-1942480205,-230051838,1592805494,1728481599,-118443693];
-sh1['html/js/download_3.js'] = [-1066319356,-823340967,364801037,-135685187,949360440,62503100,-1026608808,673607032];
+sh1['html/js/download_4.js'] = [-1234992583,2084125027,-370851603,940521839,72685493,-1608059389,1912243416,1760495804];
 sh1['html/copyright_1.html'] = [-1356115298,204388844,1433799516,1808859064,1547511974,1218829359,791662145,330338831];
 sh1['html/copyrightnotice_2.html'] = [2145667044,-154231214,2034877807,-1128384234,-1416518879,-436127618,1781667026,1515564098];
 sh1['html/js/copyrightnotice_1.js'] = [1973579369,329527753,-390047352,1474663949,-222071641,889758868,955457139,-1296592009];
 sh1['html/privacy_1.html'] = [-1306903122,1121626582,-131561918,2030506582,-1212117415,661170141,-2091853461,-67213485];
 sh1['html/terms_1.html'] = [-34273725,1778536335,-1929367173,609688965,-1887772001,-1603517551,-1148230796,518199998];
 sh1['html/credits_2.html'] = [-93209830,1787816001,1947296144,-993677008,-864037760,265442585,717054271,1195813928];
-sh1['html/takedown_2.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
+sh1['html/takedown_3.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
 sh1['html/dev_1.html'] = [1732632856,189977356,-2090647731,966313756,-172320705,-2097569904,-1732212604,-296379577];
 sh1['js/arkanoid_1.js'] = [1142088038,-111380889,1851124971,-135552288,979716897,-676254465,-315264165,-6027613];
 sh1['html/js/dev_1.js'] = [-467451688,1492882892,-1501648081,-2129952605,808295402,-1866184681,408148389,1885732291];
@@ -324,7 +324,7 @@ sh1['html/privacycompany_1.html'] = [1175830790,-1413085504,1468710126,-20631384
 sh1['html/resellerapp_1.html'] = [-1289875384,1112459579,493352325,1495092512,1830359644,920857722,-260020038,-694209961];
 sh1['html/js/resellerapp_1.js'] = [690390514,1402692817,-1160749280,1578639149,-1734342779,-1387045497,-755540821,-1791697279];
 sh1['html/resellerintro_1.html'] = [-1439407084,313440834,2041007158,-443877117,1071363056,-2021618866,1989604434,-1138587370];
-sh1['html/chrome_1.html'] = [-314806018,-421829522,-1922970450,432358148,-2018110146,-119052212,872909208,-1842521863];
+sh1['html/chrome_2.html'] = [-347821515,-1397980566,33057728,-2051075063,-1990706037,1075103272,-192759083,381134292];
 sh1['js/zxcvbn_1.js'] = [1907398498,1848592788,1411956507,1246445933,2076594788,857342092,1344967799,-1627795893];
 lv['af'] = 3;
 lv['ar'] = 3;
@@ -538,10 +538,10 @@ else
 		jsl.push({f:'js/exif_1.js', n: 'exif_js', j:1,w:3});
 		jsl.push({f:'js/megapix_1.js', n: 'megapix_js', j:1});
 		jsl.push({f:'js/user_1.js', n: 'user_js', j:1});
-		jsl.push({f:'js/mega_10.js', n: 'mega_js', j:1,w:7});
-		jsl.push({f:'js/fm_8.js', n: 'fm_js', j:1,w:12});
+		jsl.push({f:'js/mega_11.js', n: 'mega_js', j:1,w:7});
+		jsl.push({f:'js/fm_9.js', n: 'fm_js', j:1,w:12});
 		jsl.push({f:'js/filetypes_1.js', n: 'filetypes_js', j:1});
-		jsl.push({f:'index_5.js', n: 'index', j:1,w:4});
+		jsl.push({f:'index_6.js', n: 'index', j:1,w:4});
 		jsl.push({f:'html/start_1.html', n: 'start', j:0});
 		jsl.push({f:'html/megainfo_1.html', n: 'megainfo', j:0});
 		jsl.push({f:'html/js/start_2.js', n: 'start_js', j:1});
@@ -556,10 +556,10 @@ else
 		jsl.push({f:'html/top_2.html', n: 'top', j:0});
 		jsl.push({f:'js/notifications_3.js', n: 'notifications_js', j:1});		
 		if (typeof JSON == 'undefined') jsl.push({f:'js/json_1.js', n: 'json', j:1});
-		jsl.push({f:'css/style_5.css', n: 'style_css', j:2,w:30,c:1,d:1,cache:1});		
+		jsl.push({f:'css/style_6.css', n: 'style_css', j:2,w:30,c:1,d:1,cache:1});		
 		jsl.push({f:'js/avatar_2.js', n: 'avatar_js', j:1,w:3});
 		jsl.push({f:'js/countries_1.js', n: 'countries_js', j:1});
-		jsl.push({f:'html/dialogs_2.html', n: 'dialogs', j:0,w:2});
+		jsl.push({f:'html/dialogs_3.html', n: 'dialogs', j:0,w:2});
 		jsl.push({f:'html/transferwidget_1.html', n: 'transferwidget', j:0});
 		jsl.push({f:'js/checkboxes_1.js', n: 'checkboxes_js', j:1});
 		jsl.push({f:'js/zip_1.js', n: 'zip_js', j:1});
@@ -572,19 +572,19 @@ else
 			'blogarticle_js': {f:'html/js/blogarticle_1.js', n: 'blogarticle_js', j:1},		
 			'register': {f:'html/register_1.html', n: 'register', j:0},
 			'register_js': {f:'html/js/register_1.js', n: 'register_js', j:1},
-			'android': {f:'html/android_2.html', n: 'android', j:0},		
-			'forgotpassword': {f:'html/forgotpassword_2.html', n: 'forgotpassword', j:0},
-			'forgotpassword_js': {f:'html/js/forgotpassword_2.js', n: 'forgotpassword_js', j:1},
+			'android': {f:'html/android_3.html', n: 'android', j:0},		
+			'forgotpassword': {f:'html/forgotpassword_3.html', n: 'forgotpassword', j:0},
+			'forgotpassword_js': {f:'html/js/forgotpassword_3.js', n: 'forgotpassword_js', j:1},
 			'resellers': {f:'html/resellers_1.html', n: 'resellers', j:0},
 			'download': {f:'html/download_1.html', n: 'download', j:0},
-			'download_js': {f:'html/js/download_3.js', n: 'download_js', j:1},
+			'download_js': {f:'html/js/download_4.js', n: 'download_js', j:1},
 			'copyright': {f:'html/copyright_1.html', n: 'copyright', j:0},
 			'copyrightnotice': {f:'html/copyrightnotice_2.html', n: 'copyrightnotice', j:0},
 			'copyrightnotice_js': {f:'html/js/copyrightnotice_1.js', n: 'copyrightnotice_js', j:1},
 			'privacy': {f:'html/privacy_1.html', n: 'privacy', j:0},
 			'terms': {f:'html/terms_1.html', n: 'terms', j:0},
 			'credits': {f:'html/credits_2.html', n: 'credits', j:0},
-			'takedown': {f:'html/takedown_2.html', n: 'takedown', j:0},
+			'takedown': {f:'html/takedown_3.html', n: 'takedown', j:0},
 			'dev': {f:'html/dev_1.html', n: 'dev', j:0},
 			'arkanoid_js': {f:'js/arkanoid_1.js', n: 'arkanoid_js', j:1},
 			'dev_js': {f:'html/js/dev_1.js', n: 'dev_js', j:1},		
@@ -603,7 +603,7 @@ else
 			'affiliatemember_js': {f:'html/js/affiliatemember_1.js', n: 'affiliatemember_js', j:1},
 			'contact': {f:'html/contact_1.html', n: 'contact', j:0},
 			'privacycompany': {f:'html/privacycompany_1.html', n: 'privacycompany', j:0},
-			'chrome': {f:'html/chrome_1.html', n: 'chrome', j:0},
+			'chrome': {f:'html/chrome_2.html', n: 'chrome', j:0},
 			'zxcvbn_js': {f:'js/zxcvbn_1.js', n: 'zxcvbn_js', j:1}
 		};	
 		var subpages = 
@@ -634,7 +634,17 @@ else
 			'affiliate': ['affiliates','affiliateterms','affiliatesignup','affiliatesignup_js','affiliatemember','affiliatemember_js','affiliate_js']
 		};		
 		var page = document.location.hash;	
-		if (page) page = page.replace('#','');	
+		if (page)
+		{
+			page = page.replace('#','');			
+			if (page.indexOf('%21') > -1)
+			{
+				page = page.replace('%21','!').replace('%21','!');
+				document.location.hash = '#' + page;			
+			}
+		}
+		
+		
 		for (var p in subpages)
 		{
 			if (page && page.substr(0,p.length) == p)	
