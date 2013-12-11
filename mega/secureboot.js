@@ -285,7 +285,7 @@ sh1['html/blogarticle_1.html'] = [514255285,-305518940,-736361270,-1089096585,80
 sh1['html/js/blogarticle_1.js'] = [1749908144,268653485,1111265580,-1918305290,-1989480138,-275610585,-258647333,-1927257643];
 sh1['html/register_1.html'] = [-1153226879,789196380,513797998,-1455035350,-1267405269,-1114290361,-510053649,1808415441];
 sh1['html/js/register_2.js'] = [-1645064455,-2124496162,1619428351,-821412969,708818589,-1665689827,2140310774,941551808];
-sh1['html/android_32.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
+sh1['html/android_34.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
 sh1['html/forgotpassword_4.html'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
 sh1['html/js/forgotpassword_4.js'] = [-474954686,-1728308204,-1694763832,-1720731356,665731556,1687917388,-1533699813,2018687061];
 sh1['html/resellers_1.html'] = [-1546201326,-1292116690,-1709826847,926166260,-261373313,111524771,2009838544,-792794620];
@@ -566,7 +566,7 @@ else
 			'blogarticle_js': {f:'html/js/blogarticle_1.js', n: 'blogarticle_js', j:1},
 			'register': {f:'html/register_1.html', n: 'register', j:0},
 			'register_js': {f:'html/js/register_2.js', n: 'register_js', j:1},
-			'android': {f:'html/android_32.html', n: 'android', j:0},
+			'android': {f:'html/android_34.html', n: 'android', j:0},
 			'resellers': {f:'html/resellers_1.html', n: 'resellers', j:0},
 			'download': {f:'html/download_2.html', n: 'download', j:0},
 			'download_js': {f:'html/js/download_5.js', n: 'download_js', j:1},
