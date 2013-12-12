@@ -29,10 +29,12 @@ var mozOnSavingDownload = function(file,callback,ask) {
 	callback(options);
 };
 
-function mozFilePicker(f,m) {
+function mozFilePicker(f,m,o) {
+	o = o || {};
+	var title = o.title || (m === 2 ? 'Select Folder':'Save File As');
 	var nsIFilePicker = Ci.nsIFilePicker,
 		fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(window,'MEGA :: ' + (m === 2 ? 'Select Folder':'Save File As')+'...',m||nsIFilePicker.modeSave);
+	fp.init(window,'MEGA :: ' + title + '...',m||nsIFilePicker.modeSave);
 	fp.appendFilters(nsIFilePicker.filterAll); // TODO: ext2filter?
 	if(m !== 2) {
 		fp.defaultString = f;
@@ -40,7 +42,7 @@ function mozFilePicker(f,m) {
 			fp.defaultExtension = f.replace(/^.*\./,'');
 		}
 	}
-	return fp.show() != nsIFilePicker.returnCancel ? fp.file : null;
+	return fp.show() != nsIFilePicker.returnCancel ? (o.gfp ? fp:fp.file) : null;
 }
 
 function mozFile(p,f,e) {
@@ -114,6 +116,83 @@ function mozPlaySound(n) {
 		return true;
 	}catch(e){}
 	return false;
+}
+
+function mozDirtyGetAsEntry(aFile,aDataTransfer)
+{
+	this.__defineGetter__('isFile', function()
+	{
+		return aFile.isFile();
+	});
+	this.__defineGetter__('isDirectory', function()
+	{
+		return aFile.isDirectory();
+	});
+	this.__defineGetter__('name', function()
+	{
+		return aFile.leafName;
+	});
+
+	this.file = function(aCallback)
+	{
+		try {
+			var type = Cc["@mozilla.org/mime;1"].getService(Ci.nsIMIMEService).getTypeFromFile(aFile);
+		} catch(e) {}
+
+		aCallback({
+			name : aFile.leafName,
+			size : aFile.fileSize,
+			type : type || '',
+			lastModifiedDate : aFile.lastModifiedTime,
+
+			u8: function(aStart,aBytes)
+			{
+				var nsIFileInputStream = Cc["@mozilla.org/network/file-input-stream;1"]
+					.createInstance(Ci.nsIFileInputStream);
+				nsIFileInputStream.QueryInterface(Ci.nsISeekableStream);
+				nsIFileInputStream.init(aFile, -1, -1, false);
+
+				var nsIBinaryInputStream = Cc["@mozilla.org/binaryinputstream;1"]
+					.createInstance(Ci.nsIBinaryInputStream);
+				nsIBinaryInputStream.setInputStream(nsIFileInputStream);
+
+				this.u8 = function(aStart,aBytes)
+				{
+					if (d) console.log('mozDirtyGetAsEntry', aStart,aBytes);
+
+					nsIFileInputStream.seek(0,aStart);
+					var data = nsIBinaryInputStream.readByteArray(aBytes);
+					if(aBytes+aStart == aFile.fileSize)
+					{
+						nsIFileInputStream.close();
+					}
+					return new Uint8Array(data);
+				};
+
+				return this.u8(aStart,aBytes);
+			}
+		});
+	};
+
+	this.readEntries = function(aCallback)
+	{
+		var entries = [], de = aFile.directoryEntries;
+
+		while (de.hasMoreElements())
+		{
+			var file = de.getNext().QueryInterface(Ci.nsIFile);
+			entries.push(new mozDirtyGetAsEntry(file,aDataTransfer));
+		}
+
+		aCallback(entries);
+	};
+
+	this.createReader = function()
+	{
+		return this;
+	};
+
+	if (d) console.log('mozDirtyGetAsEntry', aFile.path);
 }
 
 (function(scope) {
