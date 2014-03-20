@@ -1,284 +1,171 @@
+!function(e) {
+    "use strict";
+    const t = "chrome://mega/content/secure.html#", n = "navigator:browser", r = "forEach", o = Components.classes, s = Components.interfaces, c = Components.results, a = Components.manager, i = Components.utils, u = Object.create, l = s.nsIContentPolicy.ACCEPT, f = s.nsIContentPolicy.REJECT_TYPE, d = function(e, t) {
+        var n = {};
+        return Object.getOwnPropertyNames(t)[r](function(e) {
+            n[e] = Object.getOwnPropertyDescriptor(t, e);
+        }), Object.defineProperties(e, n);
+    }, p = function(e) {
+        return "function" == typeof e && (e.prototype = void 0), Object.freeze(e);
+    }, g = p(function() {}), m = [], h = function(e) {
+        for (var t = S.wm.getEnumerator(n); t.hasMoreElements(); ) e(t.getNext().QueryInterface(s.nsIDOMWindow));
+    }, I = function(e, t) {
+        return t = t || {}, i.import("resource://gre/modules/" + e + ".jsm", t), t[e.split("/").pop()] || t;
+    }, y = function(e) {
+        i.reportError(e);
+    }, b = function(e) {
+        S.tm.currentThread.dispatch(e.bind(null), 0);
+    }, w = function(e) {
+        return "function" == typeof e.getBrowser ? e.getBrowser() : "gBrowser" in e ? e.gBrowser : e.BrowserApp.deck;
+    }, v = function(e) {
+        m.push(e);
+    }, E = I("XPCOMUtils"), C = p({
+        onOpenWindow: function(e) {
+            R(e.QueryInterface(s.nsIInterfaceRequestor).getInterface(s.nsIDOMWindow));
+        },
+        get classDescription() {
+            return j.name;
+        },
+        get classID() {
+            return Components.ID("{64696567-6f63-7220-6869-7265646a6f62}");
+        },
+        get contractID() {
+            return "@mega.co.nz/content-policy;1";
+        },
+        QueryInterface: E.generateQI([ s.nsIContentPolicy, s.nsIFactory, s.nsIWebProgressListener, s.nsISupportsWeakReference ]),
+        createInstance: function(e, t) {
+            if (e) throw c.NS_ERROR_NO_AGGREGATION;
+            return this.QueryInterface(t);
+        },
+        shouldProcess: function() {
+            return l;
+        },
+        shouldLoad: function(e, n) {
+            if (P(n)) try {
+                switch (e) {
+                  case 6:
+                  case 7:
+                    n.spec = t + n.ref;
+                    break;
 
-(function(Gs) {
-	"use strict";
+                  case 3:
+                  case 4:
+                  case 11:
+                    break;
 
-	const megacuri = 'chrome://mega/content/secure.html#';
-	const wtype = 'navigator:browser', F = 'forEach';
+                  default:
+                    throw new Error("Resource not allowed: " + n.spec);
+                }
+            } catch (e) {
+                return y(e), f;
+            }
+            return l;
+        },
+        onStateChange: g,
+        onStatusChange: g,
+        onProgressChange: g,
+        onSecurityChange: g,
+        onLocationChange: function(e, n, r) {
+            try {
+                if (P(r)) {
+                    try {
+                        n.cancel(c.NS_BINDING_REDIRECTED);
+                    } catch (e) {}
+                    e.DOMWindow.location = t + r.ref;
+                }
+            } catch (e) {
+                y(e);
+            }
+        },
+        handleEvent: function(e) {
+            switch (e.type) {
+              case "TabOpen":
+                e.target.addProgressListener(C);
+                break;
 
-	const Cc = Components.classes;
-	const Ci = Components.interfaces;
-	const Cr = Components.results;
-	const Cm = Components.manager;
-	const Cu = Components.utils;
-
-	const create = Object.create;
-	const ACCEPT = Ci.nsIContentPolicy.ACCEPT;
-	const REJECT = Ci.nsIContentPolicy.REJECT_TYPE;
-
-	const expand = function(aDstObj, aSrcObj) {
-		var tmp = {};
-		Object.getOwnPropertyNames(aSrcObj)[F](function(name) {
-			tmp[name] = Object.getOwnPropertyDescriptor(aSrcObj, name);
-		});
-		return Object.defineProperties(aDstObj, tmp);
-	};
-	const freeze = function(obj) {
-		if(typeof obj === 'function')
-			obj.prototype = undefined;
-		return Object.freeze(obj);
-	};
-	const Vf = freeze(function() {}), SQ = [];
-	const wmf = function(callback) {
-		var windows = Services.wm.getEnumerator(wtype);
-		while(windows.hasMoreElements())
-			callback(windows.getNext()
-				.QueryInterface(Ci.nsIDOMWindow));
-	};
-	const loadSubScript = function(aFile,aScope) {
-		Services.scriptloader.loadSubScript(aFile,aScope||Gs);
-	};
-	const Import = function(aFile,aScope) {
-		aScope = aScope || {};
-		Cu.import("resource://gre/modules/"+ aFile +".jsm", aScope);
-		return aScope[aFile.split("/").pop()] || aScope;
-	};
-	const reportError = function(ex) {
-		Cu.reportError(ex);
-		LOG(ex.message || ex);
-	};
-	const later = function(f) {
-		Services.tm.currentThread.dispatch(f.bind(null), 0);
-	};
-	const delay = function(func,ms) {
-		var i = Ci.nsITimer, t = Cc["@mozilla.org/timer;1"].createInstance(i);
-		t.initWithCallback({notify:func.bind(null)},ms||30,i.TYPE_ONE_SHOT);
-		return t;
-	};
-	const getBrowser = function(aWindow) {
-		if(typeof aWindow.getBrowser === 'function')
-			return aWindow.getBrowser();
-
-		if("gBrowser" in aWindow)
-			return aWindow.gBrowser;
-
-		return aWindow.BrowserApp.deck;
-	};
-	const shutdown = function(func) {
-		SQ.push(func);
-	};
-	const XPCOMUtils = Import("XPCOMUtils");
-	const i$ = freeze({
-		onOpenWindow: function(aWindow) {
-			loadIntoWindow(aWindow
-				.QueryInterface(Ci.nsIInterfaceRequestor)
-				.getInterface(Ci.nsIDOMWindow));
-		},
-		get classDescription() {
-			return addon.name;
-		},
-		get classID() {
-			return Components.ID("{64696567-6f63-7220-6869-7265646a6f62}");
-		},
-		get contractID() {
-			return "@mega.co.nz/content-policy;1";
-		},
-		QueryInterface: XPCOMUtils.generateQI([Ci.nsIContentPolicy,Ci.nsIFactory,
-			Ci.nsIWebProgressListener,Ci.nsISupportsWeakReference]),
-		createInstance: function(outer, iid) {
-			if(outer)
-				throw Cr.NS_ERROR_NO_AGGREGATION;
-			return this.QueryInterface(iid);
-		},
-		shouldProcess: function() {
-			return ACCEPT;
-		},
-		shouldLoad: function(x,y,z,n,m,t,p) {
-			if(isMEGA(y)) try {
-				switch(x) {
-					case 6:
-					case 7:
-						y.spec = megacuri + y.ref;
-						break;
-					case 3:
-					case 4:
-					case 11:
-						break;
-					default:
-						throw new Error('Resource not allowed: ' + y.spec);
-				}
-			} catch(e) {
-				reportError(e);
-				return REJECT;
-			}
-			return ACCEPT;
-		},
-		onStateChange   : Vf,
-		onStatusChange  : Vf,
-		onProgressChange: Vf,
-		onSecurityChange: Vf,
-		onLocationChange: function(w,r,l) {
-			try {
-				if(isMEGA(l)) {
-					try {
-						r.cancel(Cr.NS_BINDING_REDIRECTED);
-					} catch(e) {}
-					w.DOMWindow.location = megacuri + l.ref;
-				}
-			} catch(e) {
-				reportError(e);
-			}
-		},
-		handleEvent: function(ev) {
-			switch(ev.type) {
-				case 'TabOpen':
-					ev.target.addProgressListener(i$);
-					break;
-				case 'TabClose':
-					ev.target.removeProgressListener(i$);
-				default:
-					break;
-			}
-		},
-		onCloseWindow:Vf,
-		onWindowTitleChange:Vf
-	});
-	const isMEGA = function(y) {
-	DBG('isMEGA', y.spec, y);
-		return (y.schemeIs("http") || y.schemeIs("https")) && /(?:^|\.)mega\.(?:co\.nz|is)$/.test(y.host);
-	};
-	const register = function() {
-		try {
-			var registrar = Cm.QueryInterface(Ci.nsIComponentRegistrar);
-			registrar.registerFactory(i$.classID, i$.classDescription, i$.contractID, i$);
-		} catch (e) {
-			if(0xC1F30100 == e.result)
-				return later(register);
-			reportError(e);
-		}
-
-		Services.cm.addCategoryEntry('content-policy', i$.classDescription, i$.contractID, false, true);
-
-		var i = Ci.nsITimer, uCheckTimer = Cc["@mozilla.org/timer;1"].createInstance(i);
-		uCheckTimer.initWithCallback({
-			notify: function() {
-				addon.findUpdates({
-					onUpdateAvailable: function(addon, installer) {
-						if(AddonManager.shouldAutoUpdate(addon))
-							installer.install();
-					}
-				}, AddonManager.UPDATE_WHEN_USER_REQUESTED);
-			}
-		},3600000,i.TYPE_REPEATING_SLACK);
-
-		shutdown(function() {
-			Services.cm.deleteCategoryEntry('content-policy', i$.classDescription, false);
-
-			later(function() {
-				registrar.unregisterFactory(i$.classID, i$);
-			});
-
-			uCheckTimer.cancel();
-		});
-	};
-	const api_shutdown = function(aData,aReason) {
-		if(2 == aReason)
-			return;
-
-		for(var f ; (f = SQ.pop()) ; f());
-
-		Services.wm.removeListener(i$);
-		wmf(unloadFromWindow);
-
-		Services.io.getProtocolHandler("resource")
-			.QueryInterface(Ci.nsIResProtocolHandler)
-			.setSubstitution(addon.tag,null);
-
-		for(var m in Gs) try { delete Gs[m]; } catch(e) {}
-	};
-	const api_startup = function(aData) {
-		AddonManager.getAddonByID(aData.id,function(aAddon) {
-			var tag = aAddon.name.toLowerCase().replace(/[^\w]/g,'');
-
-			addon = expand(create(aAddon), freeze({ tag : tag,
-				branch : Services.prefs.getBranch('extensions.'+tag+'.'),
-			}));
-
-			DBG = LOG;//addon.version.replace(/[\d.]/g,'') == 'a' ? LOG:Vf;
-			DBG(Gs, addon);
-
-			register();
-
-			Services.io.getProtocolHandler("resource")
-				.QueryInterface(Ci.nsIResProtocolHandler)
-				.setSubstitution(addon.tag,aData.resourceURI);
-
-			wmf(loadIntoWindow);
-			Services.wm.addListener(i$);
-
-			addon.branch.setCharPref('version', addon.version);
-		});
-	};
-	const unloadFromWindow = function(window) {
-		var browser = getBrowser(window);
-		if(window.BrowserApp) {
-			var BrowserApp = window.BrowserApp;
-			browser.removeEventListener("TabOpen", i$, false);
-			browser.removeEventListener("TabClose", i$, false);
-			BrowserApp.tabs[F](function(tab) {
-				tab.browser.removeProgressListener(i$);
-			});
-		} else {
-			browser.removeProgressListener(i$);
-		}
-	};
-	const loadIntoWindow = function(window) {
-		const document = window.document;
-
-		if(document.readyState !== "complete") {
-			return window.addEventListener("load",function l(){
-				window.removeEventListener("load", l, false);
-				loadIntoWindow(window);
-			}, false);
-		}
-
-		DBG('loadIntoWindow', document.documentElement.getAttribute("windowtype"), document.location.href);
-		if(wtype!=document.documentElement.getAttribute("windowtype"))
-			return;
-
-		var browser = getBrowser(window);
-		if(window.BrowserApp) {
-			var BrowserApp = window.BrowserApp;
-			BrowserApp.tabs[F](function(tab) {
-				tab.browser.addProgressListener(i$);
-			});
-			browser.addEventListener("TabOpen", i$, false);
-			browser.addEventListener("TabClose", i$, false);
-		} else {
-			browser.addProgressListener(i$);
-		}
-	};
-	const AddonManager = Import("AddonManager");
-	var Services = create(Import("Services")), DBG, console, addon = {};
-	var lazy = XPCOMUtils.defineLazyServiceGetter.bind(XPCOMUtils, Services);
-	lazy("cm", "@mozilla.org/categorymanager;1", "nsICategoryManager");
-	freeze(Services);
-
-	/**/
-	try {
-		console = Import("devtools/Console").console;
-	} catch(e) {
-		console = { log : function(n,m) { Services.console.logStringMessage(m||n)}};
-	}
-	const LOG = function() {
-		[].unshift.call(arguments,addon.name);
-		console.log.apply(console, arguments);
-		DBG == Vf || console.trace();
-	}; /**/
-
-	expand(Gs, {
-		startup   : freeze(api_startup.bind(null)),
-		shutdown  : freeze(api_shutdown.bind(null)),
-		install   : Vf,
-		uninstall : Vf
-	});
-})(this);
+              case "TabClose":
+                e.target.removeProgressListener(C);
+            }
+        },
+        onCloseWindow: g,
+        onWindowTitleChange: g
+    }), P = function(e) {
+        return (e.schemeIs("http") || e.schemeIs("https")) && /(?:^|\.)mega\.(?:co\.nz|is)$/.test(e.host);
+    }, O = function() {
+        try {
+            var e = a.QueryInterface(s.nsIComponentRegistrar);
+            e.registerFactory(C.classID, C.classDescription, C.contractID, C);
+        } catch (e) {
+            if (3253928192 == e.result) return b(O);
+            y(e);
+        }
+        S.cm.addCategoryEntry("content-policy", C.classDescription, C.contractID, !1, !0);
+        var t = s.nsITimer, n = o["@mozilla.org/timer;1"].createInstance(t);
+        n.initWithCallback({
+            notify: function() {
+                j.findUpdates({
+                    onUpdateAvailable: function(e, t) {
+                        A.shouldAutoUpdate(e) && t.install();
+                    }
+                }, A.UPDATE_WHEN_USER_REQUESTED);
+            }
+        }, 36e5, t.TYPE_REPEATING_SLACK), v(function() {
+            n.cancel(), b(function() {
+                e.unregisterFactory(C.classID, C);
+            }), S.cm.deleteCategoryEntry("content-policy", C.classDescription, !1);
+        });
+    }, L = function(t, n) {
+        if (2 != n) {
+            for (var r; r = m.pop(); ) try {
+                r();
+            } catch (e) {
+                y(e);
+            }
+            S.wm.removeListener(C), h(T), S.io.getProtocolHandler("resource").QueryInterface(s.nsIResProtocolHandler).setSubstitution(j.tag, null);
+            for (var o in e) try {
+                delete e[o];
+            } catch (e) {}
+        }
+    }, D = function(e) {
+        A.getAddonByID(e.id, function(t) {
+            var n = t.name.toLowerCase().replace(/[^\w]/g, "");
+            j = d(u(t), p({
+                tag: n,
+                branch: S.prefs.getBranch("extensions." + n + ".")
+            })), O(), S.io.getProtocolHandler("resource").QueryInterface(s.nsIResProtocolHandler).setSubstitution(j.tag, e.resourceURI), 
+            h(R), S.wm.addListener(C), j.branch.setCharPref("version", j.version);
+        });
+    }, T = function(e) {
+        var t = w(e);
+        if (e.BrowserApp) {
+            var n = e.BrowserApp;
+            t.removeEventListener("TabOpen", C, !1), t.removeEventListener("TabClose", C, !1), 
+            n.tabs[r](function(e) {
+                e.browser.removeProgressListener(C);
+            });
+        } else t.removeProgressListener(C);
+    }, R = function(e) {
+        const t = e.document;
+        if ("complete" !== t.readyState) return e.addEventListener("load", function t() {
+            e.removeEventListener("load", t, !1), R(e);
+        }, !1);
+        if (n == t.documentElement.getAttribute("windowtype")) {
+            var o = w(e);
+            if (e.BrowserApp) {
+                var s = e.BrowserApp;
+                s.tabs[r](function(e) {
+                    e.browser.addProgressListener(C);
+                }), o.addEventListener("TabOpen", C, !1), o.addEventListener("TabClose", C, !1);
+            } else o.addProgressListener(C);
+        }
+    }, A = I("AddonManager"), S = d(u(I("Services")), p({
+        cm: o["@mozilla.org/categorymanager;1"].getService(s.nsICategoryManager)
+    }));
+    var j = {};
+    d(e, {
+        startup: p(D.bind(null)),
+        shutdown: p(L.bind(null)),
+        install: g,
+        uninstall: g
+    });
+}(this);
