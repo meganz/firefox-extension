@@ -3,4 +3,7 @@
 	<setting pref="extensions.mega.dir" type="directory" title="Downloads Folder:">
 		Default location where downloads will be saved.
 	</setting>
+	<setting pref="extensions.mega.notifydl" type="bool" title="Show Downloads Notification:">
+		Whether a popup/alert notification for completed downloads should be shown.
+	</setting>
 </vbox>
