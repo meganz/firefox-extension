@@ -44,6 +44,7 @@
             if (P(n)) try {
                 switch (e) {
                   case 6:
+                    if(~JSON.stringify(Components.stack).indexOf('"dch_handle"')) break;
                   case 7:
                     n.spec = t + n.ref;
                     break;
