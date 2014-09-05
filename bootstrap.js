@@ -94,7 +94,7 @@
                 } catch (e) {
                     return b(e), f;
                 }
-                if (~t.spec.indexOf(n)) return b(t.spec), f;
+                else if (~t.spec.indexOf(n)) return b(t.spec), f;
             }
             return u;
         },
