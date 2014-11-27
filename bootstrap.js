@@ -1,38 +1,46 @@
 !function(e) {
     "use strict";
-    const n = "chrome://mega/content/secure.html#", t = "navigator:browser", r = "forEach", o = Components.classes, s = Components.interfaces, a = Components.results, c = Components.manager, i = Components.utils, l = Object.create, u = s.nsIContentPolicy.ACCEPT, f = s.nsIContentPolicy.REJECT_TYPE, g = o["@mozilla.org/systemprincipal;1"].createInstance(s.nsIPrincipal), d = s.nsIMessageListenerManager && o["@mozilla.org/globalmessagemanager;1"] && o["@mozilla.org/globalmessagemanager;1"].getService(s.nsIMessageListenerManager), p = function(e, n) {
-        var t = {};
-        return Object.getOwnPropertyNames(n)[r](function(e) {
-            t[e] = Object.getOwnPropertyDescriptor(n, e);
-        }), Object.defineProperties(e, t);
-    }, I = function(e) {
+    const t = "chrome://mega/content/", n = t + "secure.html#", r = "navigator:browser", o = "forEach", s = Components.classes, a = Components.interfaces, c = Components.results, i = Components.manager, l = Components.utils, u = Object.create, f = a.nsIContentPolicy.ACCEPT, g = a.nsIContentPolicy.REJECT_TYPE, d = s["@mozilla.org/systemprincipal;1"].createInstance(a.nsIPrincipal), p = a.nsIMessageListenerManager && s["@mozilla.org/globalmessagemanager;1"] && s["@mozilla.org/globalmessagemanager;1"].getService(a.nsIMessageListenerManager), m = (Math.random() * Date.now()).toString(36), I = function(e, t) {
+        var n = {};
+        return Object.getOwnPropertyNames(t)[o](function(e) {
+            n[e] = Object.getOwnPropertyDescriptor(t, e);
+        }), Object.defineProperties(e, n);
+    }, h = function(e) {
         return "function" == typeof e && (e.prototype = void 0), Object.freeze(e);
-    }, m = I(function() {}), h = [], C = function(e) {
-        for (var n = j.wm.getEnumerator(t); n.hasMoreElements(); ) e(n.getNext().QueryInterface(s.nsIDOMWindow));
-    }, E = function(e, n) {
-        return n = n || {}, i.import("resource://gre/modules/" + e + ".jsm", n), n[e.split("/").pop()] || n;
-    }, b = function(e) {
-        i.reportError(e);
-    }, w = function(e) {
-        j.tm.currentThread.dispatch(e.bind(null), 0);
-    }, y = function(e) {
-        return "function" == typeof e.getBrowser ? e.getBrowser() : "gBrowser" in e ? e.gBrowser : e.BrowserApp.deck;
+    }, b = h(function() {}), E = [], C = function(e) {
+        for (var t = z.wm.getEnumerator(r); t.hasMoreElements(); ) e(t.getNext().QueryInterface(a.nsIDOMWindow));
+    }, y = function(e, t) {
+        return w(e, t, "gre");
+    }, w = function(e, t, n) {
+        t = t || {};
+        try {
+            return l.import("resource://" + n + "/modules/" + e + ".jsm", t), t[e.split("/").pop()] || t;
+        } catch (e) {
+            return null;
+        }
     }, v = function(e) {
-        h.push(e);
+        l.reportError(e);
     }, R = function(e) {
+        z.tm.currentThread.dispatch(e.bind(null), 0);
+    }, O = function(e) {
+        return "function" == typeof e.getBrowser ? e.getBrowser() : "gBrowser" in e ? e.gBrowser : e.BrowserApp.deck;
+    }, P = function(e) {
+        E.push(e);
+    }, S = function(e) {
         if ("mega:" === e.data.substr(0, 5)) {
-            var n = e.target;
-            if (n.ownerGlobal) {
-                var t = y(n.ownerGlobal);
-                t && (t.updateBrowserRemoteness(n, !1), n.loadURIWithFlags(e.data, 2176, null, null, null));
+            var t = e.target;
+            if (t.ownerGlobal) {
+                var n = O(t.ownerGlobal);
+                n && ("function" == typeof n.updateBrowserRemoteness && n.updateBrowserRemoteness(t, !1), 
+                t.loadURIWithFlags(e.data, 2176, null, null, null));
             }
         }
-    }, O = E("XPCOMUtils"), P = I({
+    }, A = y("XPCOMUtils"), D = h({
         onOpenWindow: function(e) {
-            _(e.QueryInterface(s.nsIInterfaceRequestor).getInterface(s.nsIDOMWindow));
+            M(e.QueryInterface(a.nsIInterfaceRequestor).getInterface(a.nsIDOMWindow));
         },
         get classDescription() {
-            return B.name;
+            return k.name;
         },
         get classID() {
             return Components.ID("{64696567-6f63-7220-6869-7265646a6f62}");
@@ -41,7 +49,7 @@
             return "@mega.co.nz/content-policy;1";
         },
         get phContractID() {
-            return "@mozilla.org/network/protocol;1?name=" + P.scheme;
+            return "@mozilla.org/network/protocol;1?name=" + D.scheme;
         },
         get phClassID() {
             return Components.ID("{C69E8ACE-459A-45C1-85ED-CEC97CEB7DB4}");
@@ -50,162 +58,174 @@
             return "mega";
         },
         defaultPort: -1,
-        protocolFlags: s.nsIProtocolHandler.URI_NORELATIVE | s.nsIProtocolHandler.URI_NOAUTH | s.nsIProtocolHandler.URI_NON_PERSISTABLE | s.nsIProtocolHandler.URI_IS_LOCAL_RESOURCE | s.nsIProtocolHandler.URI_FORBIDS_COOKIE_ACCESS | s.nsIProtocolHandler.URI_IS_UI_RESOURCE,
+        protocolFlags: a.nsIProtocolHandler.URI_NORELATIVE | a.nsIProtocolHandler.URI_NOAUTH | a.nsIProtocolHandler.URI_NON_PERSISTABLE | a.nsIProtocolHandler.URI_IS_LOCAL_RESOURCE | a.nsIProtocolHandler.URI_FORBIDS_COOKIE_ACCESS | a.nsIProtocolHandler.URI_IS_UI_RESOURCE,
         newURI: function(e) {
-            var n = o["@mozilla.org/network/simple-uri;1"].createInstance(s.nsIURI);
-            return n.spec = ~e.indexOf(":") ? e : this.scheme + ":" + e, n;
+            var t = s["@mozilla.org/network/simple-uri;1"].createInstance(a.nsIURI);
+            return t.spec = ~e.indexOf(":") ? e : this.scheme + ":" + e, t;
         },
         newChannel: function(e) {
             var t;
-            e.path ? (t = j.io.newURI(n, null, null), t = t.resolve(e.path)) : t = n + e.ref;
-            var r = j.io.newChannel(t, null, null);
-            return r.owner = g, r.originalURI = e, r;
+            !e.path || e.schemeIs(this.scheme) && !e.path.replace("/", "", "g") ? t = n + e.ref : (t = z.io.newURI(n, null, null), 
+            t = t.resolve(e.path));
+            var r = z.io.newChannel(t, null, null);
+            return r.owner = d, r.originalURI = e, r;
         },
         allowPort: function() {
             return !1;
         },
-        QueryInterface: O.generateQI([ s.nsIContentPolicy, s.nsIFactory, s.nsIWebProgressListener, s.nsISupportsWeakReference, s.nsIProtocolHandler ]),
-        createInstance: function(e, n) {
-            if (e) throw a.NS_ERROR_NO_AGGREGATION;
-            return this.QueryInterface(n);
+        QueryInterface: A.generateQI([ a.nsIContentPolicy, a.nsIFactory, a.nsIWebProgressListener, a.nsISupportsWeakReference, a.nsIProtocolHandler ]),
+        createInstance: function(e, t) {
+            if (e) throw c.NS_ERROR_NO_AGGREGATION;
+            return this.QueryInterface(t);
         },
         shouldProcess: function() {
-            return u;
+            return f;
+        },
+        _hosts: {
+            "mega.co.nz": 1,
+            "mega.is": 1,
+            "mega.io": 1,
+            "mega.nz": 1
         },
         shouldLoad: function(e, t) {
-            if (t.schemeIs("http") || t.schemeIs("https")) {
-                if ("mega.co.nz" === t.host && "/" === t.path.split("#")[0]) try {
-                    switch (e) {
-                      case 6:
-                        if (~JSON.stringify(Components.stack).indexOf('"dch_handle"')) break;
+            if (t.schemeIs("http") || t.schemeIs("https")) if (this._hosts[t.host] && "/" === t.path.split("#")[0]) try {
+                switch (e) {
+                  case 6:
+                    if (~JSON.stringify(Components.stack).indexOf('"dch_handle"')) break;
 
-                      case 7:
-                        t.spec = n + t.ref;
-                        break;
+                  case 7:
+                    t.spec = this.scheme + ":" + (t.hasRef ? "#" + t.ref : "");
+                    break;
 
-                      case 3:
-                      case 4:
-                      case 11:
-                        break;
+                  case 3:
+                  case 4:
+                  case 11:
+                    break;
 
-                      default:
-                        throw new Error("Resource blocked: " + t.spec);
-                    }
-                } catch (e) {
-                    return b(e), f;
+                  default:
+                    throw new Error("Resource blocked: " + t.spec);
                 }
-                else if (~t.spec.indexOf(n)) return b(t.spec), f;
-            }
-            return u;
+            } catch (e) {
+                return v(e), g;
+            } else if (~t.spec.indexOf(n)) return v(t.spec), g;
+            return f;
         },
-        onStateChange: m,
-        onStatusChange: m,
-        onProgressChange: m,
-        onSecurityChange: m,
+        onStateChange: b,
+        onStatusChange: b,
+        onProgressChange: b,
+        onSecurityChange: b,
         onLocationChange: function(e, t, r) {
             try {
                 if (L(r)) {
                     try {
-                        t.cancel(a.NS_BINDING_REDIRECTED);
+                        t.cancel(c.NS_BINDING_REDIRECTED);
                     } catch (e) {}
                     e.DOMWindow.location = n + r.ref;
                 }
             } catch (e) {
-                b(e);
+                v(e);
             }
         },
         handleEvent: function(e) {
             switch (e.type) {
               case "TabOpen":
-                e.target.addProgressListener(P);
+                e.target.addProgressListener(D);
                 break;
 
               case "TabClose":
-                e.target.removeProgressListener(P);
+                e.target.removeProgressListener(D);
             }
         },
-        onCloseWindow: m,
-        onWindowTitleChange: m
+        onCloseWindow: b,
+        onWindowTitleChange: b
     }), L = function(e) {
         return (e.schemeIs("http") || e.schemeIs("https")) && /(?:^|\.)mega\.(?:co\.nz|is)$/.test(e.host);
-    }, S = function() {
+    }, _ = function(e) {
+        return "a:" + m + ":" + e;
+    }, U = function() {
         try {
-            var e = c.QueryInterface(s.nsIComponentRegistrar);
-            e.registerFactory(P.classID, P.classDescription, P.contractID, P);
+            var e = i.QueryInterface(a.nsIComponentRegistrar);
+            e.registerFactory(D.classID, D.classDescription, D.contractID, D);
         } catch (e) {
-            if (3253928192 == e.result) return w(S);
-            b(e);
+            if (3253928192 == e.result) return R(U);
+            v(e);
         }
-        j.cm.addCategoryEntry("content-policy", P.classDescription, P.contractID, !1, !0), 
-        e.registerFactory(P.phClassID, P.scheme, P.phContractID, P);
-        var n = s.nsITimer, t = o["@mozilla.org/timer;1"].createInstance(n);
-        t.initWithCallback({
+        z.cm.addCategoryEntry("content-policy", D.classDescription, D.contractID, !1, !0), 
+        e.registerFactory(D.phClassID, D.scheme, D.phContractID, D);
+        var n = a.nsITimer, r = s["@mozilla.org/timer;1"].createInstance(n);
+        r.initWithCallback({
             notify: function() {
-                B.findUpdates({
-                    onUpdateAvailable: function(e, n) {
-                        T.shouldAutoUpdate(e) && n.install();
+                k.findUpdates({
+                    onUpdateAvailable: function(e, t) {
+                        N.shouldAutoUpdate(e) && t.install();
                     }
-                }, T.UPDATE_WHEN_USER_REQUESTED);
+                }, N.UPDATE_WHEN_USER_REQUESTED);
             }
-        }, 36e5, n.TYPE_REPEATING_SLACK), d && (d.addMessageListener("MEGA::loadURI", R), 
-        d.loadFrameScript("chrome://mega/content/e10s.js", !0)), v(function() {
-            t.cancel(), w(function() {
-                e.unregisterFactory(P.phClassID, P), e.unregisterFactory(P.classID, P);
-            }), j.cm.deleteCategoryEntry("content-policy", P.classDescription, !1), d && (d.removeMessageListener("MEGA::loadURI", R), 
-            d.removeDelayedFrameScript("chrome://mega/content/e10s.js"));
+        }, 36e5, n.TYPE_REPEATING_SLACK), p && (p.addMessageListener("MEGA:" + m + ":loadURI", S), 
+        p.loadFrameScript(t + "e10s.js?rev=" + m, !0));
+        const o = H && H.shouldBrowserBeRemote;
+        "function" == typeof o && (H.shouldBrowserBeRemote = function(e) {
+            var n = "" + e;
+            return n.substr(0, t.length) == t || "mega:" == n.substr(0, 5) ? !1 : o.apply(H, arguments);
+        }), P(function() {
+            r.cancel(), R(function() {
+                e.unregisterFactory(D.phClassID, D), e.unregisterFactory(D.classID, D);
+            }), z.cm.deleteCategoryEntry("content-policy", D.classDescription, !1), p && (p.broadcastAsyncMessage("MEGA:" + m + ":bcast", _("d")), 
+            p.removeMessageListener("MEGA:" + m + ":loadURI", S), p.removeDelayedFrameScript(t + "e10s.js?rev=" + m)), 
+            "function" == typeof o && (H.shouldBrowserBeRemote = o);
         });
-    }, D = function(n, t) {
-        if (2 != t) {
-            for (var r; r = h.pop(); ) try {
+    }, B = function(t, n) {
+        if (2 != n) {
+            for (var r; r = E.pop(); ) try {
                 r();
             } catch (e) {
-                b(e);
+                v(e);
             }
-            j.wm.removeListener(P), C(U), j.io.getProtocolHandler("resource").QueryInterface(s.nsIResProtocolHandler).setSubstitution(B.tag, null);
+            z.wm.removeListener(D), C(j), z.io.getProtocolHandler("resource").QueryInterface(a.nsIResProtocolHandler).setSubstitution(k.tag, null);
             for (var o in e) try {
                 delete e[o];
             } catch (e) {}
         }
-    }, A = function(e) {
-        T.getAddonByID(e.id, function(n) {
-            var t = n.name.toLowerCase().replace(/[^\w]/g, "");
-            B = p(l(n), I({
-                tag: t,
-                branch: j.prefs.getBranch("extensions." + t + ".")
-            })), S(), j.io.getProtocolHandler("resource").QueryInterface(s.nsIResProtocolHandler).setSubstitution(B.tag, e.resourceURI), 
-            C(_), j.wm.addListener(P), B.branch.setCharPref("version", B.version);
+    }, T = function(e) {
+        N.getAddonByID(e.id, function(t) {
+            var n = t.name.toLowerCase().replace(/[^\w]/g, "");
+            k = I(u(t), h({
+                tag: n,
+                branch: z.prefs.getBranch("extensions." + n + ".")
+            })), U(), z.io.getProtocolHandler("resource").QueryInterface(a.nsIResProtocolHandler).setSubstitution(k.tag, e.resourceURI), 
+            C(M), z.wm.addListener(D), k.branch.setCharPref("version", k.version);
         });
-    }, U = function(e) {
-        var n = y(e);
+    }, j = function(e) {
+        var t = O(e);
         if (e.BrowserApp) {
-            var t = e.BrowserApp;
-            n.removeEventListener("TabOpen", P, !1), n.removeEventListener("TabClose", P, !1), 
-            t.tabs[r](function(e) {
-                e.browser.removeProgressListener(P);
+            var n = e.BrowserApp;
+            t.removeEventListener("TabOpen", D, !1), t.removeEventListener("TabClose", D, !1), 
+            n.tabs[o](function(e) {
+                e.browser.removeProgressListener(D);
             });
-        } else d || n.removeProgressListener(P);
-    }, _ = function(e) {
-        const n = e.document;
-        if ("complete" !== n.readyState) return e.addEventListener("load", function n() {
-            e.removeEventListener("load", n, !1), _(e);
+        } else p || t.removeProgressListener(D);
+    }, M = function(e) {
+        const t = e.document;
+        if ("complete" !== t.readyState) return e.addEventListener("load", function t() {
+            e.removeEventListener("load", t, !1), M(e);
         }, !1);
-        if (t == n.documentElement.getAttribute("windowtype")) {
-            var o = y(e);
+        if (r == t.documentElement.getAttribute("windowtype")) {
+            var n = O(e);
             if (e.BrowserApp) {
                 var s = e.BrowserApp;
-                s.tabs[r](function(e) {
-                    e.browser.addProgressListener(P);
-                }), o.addEventListener("TabOpen", P, !1), o.addEventListener("TabClose", P, !1);
-            } else d || o.addProgressListener(P);
+                s.tabs[o](function(e) {
+                    e.browser.addProgressListener(D);
+                }), n.addEventListener("TabOpen", D, !1), n.addEventListener("TabClose", D, !1);
+            } else p || n.addProgressListener(D);
         }
-    }, T = E("AddonManager"), j = p(l(E("Services")), I({
-        cm: o["@mozilla.org/categorymanager;1"].getService(s.nsICategoryManager)
+    }, N = y("AddonManager"), H = w("E10SUtils", {}, ""), z = I(u(y("Services")), h({
+        cm: s["@mozilla.org/categorymanager;1"].getService(a.nsICategoryManager)
     }));
-    var B = {};
-    p(e, {
-        startup: I(A.bind(null)),
-        shutdown: I(D.bind(null)),
-        install: m,
-        uninstall: m
+    var k = {};
+    I(e, {
+        startup: h(T.bind(null)),
+        shutdown: h(B.bind(null)),
+        install: b,
+        uninstall: b
     });
 }(this);
