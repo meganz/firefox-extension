@@ -94,7 +94,8 @@
                     if (~JSON.stringify(Components.stack).indexOf('"dch_handle"')) break;
 
                   case 7:
-                    t.spec = this.scheme + ":" + (t.hasRef ? "#" + t.ref : "");
+                    //t.spec = this.scheme + ":" + (t.hasRef ? "#" + t.ref : "");
+                    t.spec = n + t.ref;
                     break;
 
                   case 3:
