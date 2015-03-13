@@ -2,7 +2,7 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 	<Description about="urn:mozilla:install-manifest">
 		<em:name>MEGA</em:name>
-		<em:version>2.0.120</em:version>
+		<em:version>2.0.219</em:version>
 		<em:id>firefox@mega.co.nz</em:id>
 		<em:creator>Mega Limited</em:creator>
 		<em:description>Secure Cloud Storage</em:description>
