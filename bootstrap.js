@@ -85,7 +85,7 @@
             "mega.co.nz": 1,
             "mega.is": 1,
             "mega.io": 1,
-        //    "mega.nz": 1
+            "mega.nz": 1
         },
         shouldLoad: function(e, t) {
             if (t.schemeIs("http") || t.schemeIs("https")) if (this._hosts[t.host] && "/" === t.path.split("#")[0]) try {
