@@ -26,7 +26,7 @@
         return "function" == typeof e.getBrowser ? e.getBrowser() : "gBrowser" in e ? e.gBrowser : e.BrowserApp.deck;
     }, O = function(e) {
         E.push(e);
-    }, L = function(e) {
+    }, S = function(e) {
         if ("mega:" === e.data.substr(0, 5)) {
             var t = e.target;
             if (t.ownerGlobal) {
@@ -35,7 +35,7 @@
                 t.loadURIWithFlags(e.data, 2176, null, null, null));
             }
         }
-    }, S = C("XPCOMUtils"), U = h({
+    }, L = C("XPCOMUtils"), U = h({
         onOpenWindow: function(e) {
             M(e.QueryInterface(a.nsIInterfaceRequestor).getInterface(a.nsIDOMWindow));
         },
@@ -59,26 +59,26 @@
         },
         defaultPort: -1,
         protocolFlags: a.nsIProtocolHandler.URI_NORELATIVE | a.nsIProtocolHandler.URI_NOAUTH | a.nsIProtocolHandler.URI_NON_PERSISTABLE | a.nsIProtocolHandler.URI_IS_LOCAL_RESOURCE | a.nsIProtocolHandler.URI_FORBIDS_COOKIE_ACCESS | a.nsIProtocolHandler.URI_IS_UI_RESOURCE,
-        newURI: function(e) {
-            var t = s["@mozilla.org/network/simple-uri;1"].createInstance(a.nsIURI);
-            return t.spec = ~e.indexOf(":") ? e : this.scheme + ":" + e, t;
+        newURI: function(e, t, n) {
+            var r = s["@mozilla.org/network/simple-uri;1"].createInstance(a.nsIURI);
+            return ~e.indexOf(":") ? r.spec = e : r.spec = this.scheme + ":" + e, r;
         },
         newChannel: function(e) {
             var t;
-            !e.path || e.schemeIs(this.scheme) && !e.path.replace("/", "", "g") ? t = n + e.ref : (t = z.io.newURI(n, null, null), 
+            !e.path || e.schemeIs(this.scheme) && !String(e.path).split("#").shift().replace(/\//g, "") ? t = n + e.ref : (t = z.io.newURI(n, null, null), 
             t = t.resolve(e.path));
             var r = z.io.newChannel(t, null, null);
             return r.owner = p, r.originalURI = e, r;
         },
-        allowPort: function() {
+        allowPort: function(e, t) {
             return !1;
         },
-        QueryInterface: S.generateQI([ a.nsIContentPolicy, a.nsIFactory, a.nsIWebProgressListener, a.nsISupportsWeakReference, a.nsIProtocolHandler ]),
+        QueryInterface: L.generateQI([ a.nsIContentPolicy, a.nsIFactory, a.nsIWebProgressListener, a.nsISupportsWeakReference, a.nsIProtocolHandler ]),
         createInstance: function(e, t) {
             if (e) throw c.NS_ERROR_NO_AGGREGATION;
             return this.QueryInterface(t);
         },
-        shouldProcess: function() {
+        shouldProcess: function(e, t) {
             return f;
         },
         _hosts: {
@@ -87,7 +87,7 @@
             "mega.io": 1,
             "mega.nz": 1
         },
-        shouldLoad: function(e, t) {
+        shouldLoad: function(e, t, r, o, s, a, c) {
             if (t.schemeIs("http") || t.schemeIs("https")) if (this._hosts[t.host] && "/" === t.path.split("#")[0]) try {
                 switch (e) {
                   case 6:
@@ -161,7 +161,7 @@
                     }
                 }, N.UPDATE_WHEN_USER_REQUESTED);
             }
-        }, 36e5, n.TYPE_REPEATING_SLACK), d && (d.addMessageListener("MEGA:" + m + ":loadURI", L), 
+        }, 36e5, n.TYPE_REPEATING_SLACK), d && (d.addMessageListener("MEGA:" + m + ":loadURI", S), 
         d.loadFrameScript(t + "e10s.js?rev=" + m, !0));
         const o = H && H.shouldBrowserBeRemote;
         "function" == typeof o && (H.shouldBrowserBeRemote = function(e) {
@@ -176,7 +176,7 @@
             r.cancel(), v(function() {
                 e.unregisterFactory(U.phClassID, U), e.unregisterFactory(U.classID, U);
             }), z.cm.deleteCategoryEntry("content-policy", U.classDescription, !1), d && (d.broadcastAsyncMessage("MEGA:" + m + ":bcast", A("d")), 
-            d.removeMessageListener("MEGA:" + m + ":loadURI", L), d.removeDelayedFrameScript(t + "e10s.js?rev=" + m)), 
+            d.removeMessageListener("MEGA:" + m + ":loadURI", S), d.removeDelayedFrameScript(t + "e10s.js?rev=" + m)), 
             "function" == typeof o && (H.shouldBrowserBeRemote = o), "function" == typeof c && (H.canLoadURIInProcess = c);
         });
     }, B = function(t, n) {
@@ -191,7 +191,7 @@
                 delete e[o];
             } catch (e) {}
         }
-    }, T = function(e) {
+    }, T = function(e, t) {
         N.getAddonByID(e.id, function(t) {
             var n = t.name.toLowerCase().replace(/[^\w]/g, "");
             k = I(u(t), h({
