@@ -1,9 +1,16 @@
 <?xml version="1.0"?>
+<!DOCTYPE window [
+<!ENTITY % mainDTD SYSTEM "chrome://browser/locale/preferences/main.dtd">
+<!ENTITY % browserDTD SYSTEM "chrome://browser/locale/browser.dtd">
+%browserDTD;
+%mainDTD;
+]>
 <vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	<setting pref="extensions.mega.dir" type="directory" title="Downloads Folder:">
+	<setting pref="extensions.mega.dir" type="directory" title="&saveTo.label;">
 		Default location where downloads will be saved.
 	</setting>
-	<setting pref="extensions.mega.notifydl" type="bool" title="Show Downloads Notification:">
+	<setting pref="extensions.mega.askdir" type="bool" title="&alwaysAsk.label;"></setting>
+	<setting pref="extensions.mega.notifydl" type="bool" title="&social.toggleNotifications.label;">
 		Whether a popup/alert notification for completed downloads should be shown.
 	</setting>
 </vbox>
