@@ -333,9 +333,8 @@
 		AddonManager.getAddonByID(aData.id,function(aAddon) {
 			var tag = aAddon.name.toLowerCase().replace(/[^\w]/g,'');
 
-			addon = extend(create(aAddon), freeze({ tag : tag,
-				branch : Services.prefs.getBranch('extensions.'+tag+'.'),
-			}));
+			addon = aAddon;
+			Object.defineProperty(addon, 'tag', { value: tag });
 
 			// DBG = LOG;//addon.version.replace(/[\d.]/g,'') == 'a' ? LOG:Vf;
 			// DBG(Gs, addon, Services, i$);
@@ -349,7 +348,7 @@
 			wmf(loadIntoWindow);
 			Services.wm.addListener(i$);
 
-			addon.branch.setCharPref('version', addon.version);
+			Services.prefs.setCharPref('extensions.' + tag + '.version', addon.version);
 		});
 	};
 	const unloadFromWindow = function(window) {
