@@ -189,8 +189,10 @@
 							throw new Error('Resource blocked: ' + y.spec);
 					}
 				} catch(e) {
-					reportError(e);
-					return REJECT;
+					if (e.result != Cr.NS_ERROR_MALFORMED_URI) {
+						reportError(e);
+						return REJECT;
+					}
 				}
 				else if (~y.spec.indexOf(megacuri))
 				{
