@@ -95,6 +95,13 @@
 			}
 		}
 	};
+	const eventMMListener = function(msg) {
+		var event = msg.data;
+		var timer = delay(function() {
+			Services.obs.notifyObservers(null, event.name, JSON.stringify(event));
+			timer = null;
+		}, 4444);
+	};
 	const XPCOMUtils = Import("XPCOMUtils");
 	const i$ = freeze({
 		onOpenWindow: function(aWindow) {
@@ -264,6 +271,7 @@
 		},3600000,i.TYPE_REPEATING_SLACK);
 		
 		if (globalMM) {
+			globalMM.addMessageListener("MEGA:"+mRID+":event", eventMMListener);
 			globalMM.addMessageListener("MEGA:"+mRID+":loadURI", globalMMListener);
 			globalMM.loadFrameScript(chromens+'e10s.js?rev='+mRID,true);
 		}
@@ -299,6 +307,7 @@
 			
 			if (globalMM) {
 				globalMM.broadcastAsyncMessage("MEGA:"+mRID+":bcast",getMMMsg('d'));
+				globalMM.removeMessageListener("MEGA:"+mRID+":event", eventMMListener);
 				globalMM.removeMessageListener("MEGA:"+mRID+":loadURI", globalMMListener);
 				globalMM.removeDelayedFrameScript(chromens+'e10s.js?rev='+mRID);
 			}
