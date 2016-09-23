@@ -153,7 +153,7 @@
 				uri = megacuri + aURI.ref;
 			}
 			// LOG("newChannel: " + aURI.spec + " -> " + uri, aURI);
-			var channel = Services.io.newChannel(uri, null, null);
+			var channel = newChannel(uri);
 			channel.owner = mSystemPrincipal;
 			channel.originalURI = aURI;
 			return channel;
@@ -405,6 +405,21 @@
 	const Services = extend(create(Import("Services")), freeze({
 		cm : Cc["@mozilla.org/categorymanager;1"].getService(Ci.nsICategoryManager)
 	}));
+	const newChannel = (function() {
+		if (typeof Services.io.newChannel2 !== 'function') {
+			return function(aSpec) {
+				return Services.io.newChannel(aSpec, null, null);
+			};
+		}
+		return function(aSpec) {
+			return Services.io.newChannel2(
+				aSpec,
+				'UTF-8',
+				null, null, mSystemPrincipal, null,
+				Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+				Ci.nsIContentPolicy.TYPE_DOCUMENT);
+		};
+	})();
 	var DBG, console, addon = {};
 
 	/**
