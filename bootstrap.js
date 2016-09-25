@@ -145,15 +145,25 @@
 			return uri;
 		},
 		newChannel: function(aURI) {
-			var uri;
+			return this.newChannel2(aURI, null);
+		},
+		newChannel2: function(aURI, aLoadInfo) {
+			let uri;
+			let channel;
 			if (aURI.path && (!aURI.schemeIs(this.scheme) || String(aURI.path).split('#').shift().replace(/\//g, ''))) {
 				uri = Services.io.newURI(megacuri, null, null);
 				uri = uri.resolve(aURI.path);
 			} else {
 				uri = megacuri + aURI.ref;
 			}
-			// LOG("newChannel: " + aURI.spec + " -> " + uri, aURI);
-			var channel = newChannel(uri);
+			// LOG("newChannel2: " + aURI.spec + " -> " + uri, aURI, aLoadInfo);
+			if (aLoadInfo) {
+				uri = Services.io.newURI(uri, null, null);
+				channel = Services.io.newChannelFromURIWithLoadInfo(uri, aLoadInfo);
+			}
+			else {
+				channel = newChannel(uri);
+			}
 			channel.owner = mSystemPrincipal;
 			channel.originalURI = aURI;
 			return channel;
@@ -426,11 +436,11 @@
 	try {
 		console = Import("devtools/Console").console;
 	} catch(e) {
-		console = { log : function(n,m) { Services.console.logStringMessage(m||n)}};
+		console = { info : function(n,m) { Services.console.logStringMessage(m||n)}};
 	}
 	const LOG = function() {
 		[].unshift.call(arguments,addon.name);
-		console.log.apply(console, arguments);
+		console.info.apply(console, arguments);
 		DBG == Vf || console.trace();
 	}; /**/
 
