@@ -255,6 +255,19 @@
 	const getMMMsg = function(type) {
 		return 'a:' + mRID + ':' + type;
 	};
+	const getPrincipalForFrame = function(docShell, frame) {
+		let ssm = Services.scriptSecurityManager;
+		let uri = frame.document.documentURIObject;
+		return ssm.getDocShellCodebasePrincipal(uri, docShell);
+	};
+	const getSessionStorage = function() {
+		try {
+			let tmp = Cu.import('resource://app/modules/sessionstore/SessionStorage.jsm', {});
+			return tmp.SessionStorageInternal;
+		} catch(e) {}
+		
+		return false;
+	};
 	const register = function() {
 		try {
 			var registrar = Cm.QueryInterface(Ci.nsIComponentRegistrar);
@@ -286,25 +299,40 @@
 			globalMM.loadFrameScript(chromens+'e10s.js?rev='+mRID,true);
 		}
 		
-		const __sbbr = E10SUtils && E10SUtils.shouldBrowserBeRemote;
-		if (typeof __sbbr === 'function') {
+		const shouldBrowserBeRemote = E10SUtils && E10SUtils.shouldBrowserBeRemote;
+		if (typeof shouldBrowserBeRemote === 'function') {
 			E10SUtils.shouldBrowserBeRemote = function(aURL) {
 				var url = '' + aURL;
 				if (url.substr(0,chromens.length) == chromens || url.substr(0,5) == 'mega:')
 					return false;
-				return __sbbr.apply(E10SUtils, arguments);
+				return shouldBrowserBeRemote.apply(E10SUtils, arguments);
 			};
 		}
-		const __cluip = E10SUtils && E10SUtils.canLoadURIInProcess;
-		if (typeof __cluip === 'function') {
+		const canLoadURIInProcess = E10SUtils && E10SUtils.canLoadURIInProcess;
+		if (typeof canLoadURIInProcess === 'function') {
 			E10SUtils.canLoadURIInProcess = function(aURL, aProcess) {
 				var url = '' + aURL;
 				if (url.substr(0,chromens.length) == chromens || url.substr(0,5) == 'mega:')
 					return aProcess !== Ci.nsIXULRuntime.PROCESS_TYPE_CONTENT;
-				return __cluip.apply(E10SUtils, arguments);
+				return canLoadURIInProcess.apply(E10SUtils, arguments);
 			};
 		}
-		
+		// Workaround Bug 1247529
+		const SessionStorageInternal = getSessionStorage();
+		const ssCollect = SessionStorageInternal.collect;
+		SessionStorageInternal.collect = function(aDocShell, aFrameTree) {
+			let frameTree = [];
+			aFrameTree.forEach(function(frame) {
+				try {
+					getPrincipalForFrame(aDocShell, frame).origin;
+					frameTree.push(frame);
+				}
+				catch (e) {}
+			});
+
+			return ssCollect.call(SessionStorageInternal, aDocShell, frameTree);
+		};
+
 		shutdown(function() {
 			uCheckTimer.cancel();
 
@@ -321,11 +349,14 @@
 				globalMM.removeMessageListener("MEGA:"+mRID+":loadURI", globalMMListener);
 				globalMM.removeDelayedFrameScript(chromens+'e10s.js?rev='+mRID);
 			}
-			if (typeof __sbbr === 'function') {
-				E10SUtils.shouldBrowserBeRemote = __sbbr;
+			if (typeof shouldBrowserBeRemote === 'function') {
+				E10SUtils.shouldBrowserBeRemote = shouldBrowserBeRemote;
 			}
-			if (typeof __cluip === 'function') {
-				E10SUtils.canLoadURIInProcess = __cluip;
+			if (typeof canLoadURIInProcess === 'function') {
+				E10SUtils.canLoadURIInProcess = canLoadURIInProcess;
+			}
+			if (typeof ssCollect === 'function') {
+				SessionStorageInternal.collect = ssCollect;
 			}
 		});
 	};
