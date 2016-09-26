@@ -269,18 +269,33 @@
 		return false;
 	};
 	const register = function() {
-		try {
-			var registrar = Cm.QueryInterface(Ci.nsIComponentRegistrar);
-			registrar.registerFactory(i$.classID, i$.classDescription, i$.contractID, i$);
-		} catch (e) {
-			if(0xC1F30100 == e.result)
-				return later(register);
-			reportError(e);
+		let registrar;
+
+		if (addon.multiprocessCompatible) {
+			Services.ppmm.loadProcessScript('resource://mega/process-script.js?id=' + addon.psid, true);
+			try {
+				registrar = Cm.QueryInterface(Ci.nsIComponentRegistrar);
+				registrar.registerFactory(i$.phClassID, i$.scheme, i$.phContractID, i$);
+			} catch (e) {
+				if(0xC1F30100 == e.result)
+					return later(register);
+				reportError(e);
+			}
+		}
+		else {
+			try {
+				registrar = Cm.QueryInterface(Ci.nsIComponentRegistrar);
+				registrar.registerFactory(i$.classID, i$.classDescription, i$.contractID, i$);
+			} catch (e) {
+				if(0xC1F30100 == e.result)
+					return later(register);
+				reportError(e);
+			}
+
+			Services.cm.addCategoryEntry('content-policy', i$.classDescription, i$.contractID, false, true);
+			registrar.registerFactory(i$.phClassID, i$.scheme, i$.phContractID, i$);
 		}
 
-		Services.cm.addCategoryEntry('content-policy', i$.classDescription, i$.contractID, false, true);
-		registrar.registerFactory(i$.phClassID, i$.scheme, i$.phContractID, i$);
-		
 		var i = Ci.nsITimer, uCheckTimer = Cc["@mozilla.org/timer;1"].createInstance(i);
 		uCheckTimer.initWithCallback({
 			notify: function() {
@@ -336,13 +351,23 @@
 		shutdown(function() {
 			uCheckTimer.cancel();
 
-			later(function() {
-				registrar.unregisterFactory(i$.phClassID, i$);
-				registrar.unregisterFactory(i$.classID, i$);
-			});
+			if (addon.multiprocessCompatible) {
+				Services.ppmm.broadcastAsyncMessage('mega:' + addon.psid, 'shutdown');
+				Services.ppmm.removeDelayedProcessScript('resource://mega/process-script.js?id=' + addon.psid);
 
-			Services.cm.deleteCategoryEntry('content-policy', i$.classDescription, false);
-			
+				later(function() {
+					registrar.unregisterFactory(i$.phClassID, i$);
+				});
+			}
+			else {
+				later(function() {
+					registrar.unregisterFactory(i$.phClassID, i$);
+					registrar.unregisterFactory(i$.classID, i$);
+				});
+
+				Services.cm.deleteCategoryEntry('content-policy', i$.classDescription, false);
+			}
+
 			if (globalMM) {
 				globalMM.broadcastAsyncMessage("MEGA:"+mRID+":bcast",getMMMsg('d'));
 				globalMM.removeMessageListener("MEGA:"+mRID+":event", eventMMListener);
@@ -387,15 +412,16 @@
 
 			addon = aAddon;
 			Object.defineProperty(addon, 'tag', { value: tag });
+			Object.defineProperty(addon, 'psid', { value: addon.id.replace(/[^\w-]/g, '') + mRID });
 
 			// DBG = LOG;//addon.version.replace(/[\d.]/g,'') == 'a' ? LOG:Vf;
 			// DBG(Gs, addon, Services, i$);
 
-			register();
-
 			Services.io.getProtocolHandler("resource")
 				.QueryInterface(Ci.nsIResProtocolHandler)
 				.setSubstitution(addon.tag,aData.resourceURI);
+
+			register();
 
 			wmf(loadIntoWindow);
 			Services.wm.addListener(i$);
