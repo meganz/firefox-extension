@@ -412,7 +412,10 @@
 
 			addon = aAddon;
 			Object.defineProperty(addon, 'tag', { value: tag });
-			Object.defineProperty(addon, 'psid', { value: addon.id.replace(/[^\w-]/g, '') + mRID });
+			Object.defineProperty(addon, 'psid', {
+				configurable: true,
+				value: addon.id.replace(/[^\w-]/g, '') + mRID
+			});
 
 			// DBG = LOG;//addon.version.replace(/[\d.]/g,'') == 'a' ? LOG:Vf;
 			// DBG(Gs, addon, Services, i$);
