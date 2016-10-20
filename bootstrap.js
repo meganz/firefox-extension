@@ -285,6 +285,7 @@
 		else {
 			try {
 				registrar = Cm.QueryInterface(Ci.nsIComponentRegistrar);
+				registrar.registerFactory(i$.phClassID, i$.scheme, i$.phContractID, i$);
 				registrar.registerFactory(i$.classID, i$.classDescription, i$.contractID, i$);
 			} catch (e) {
 				if(0xC1F30100 == e.result)
@@ -293,7 +294,6 @@
 			}
 
 			Services.cm.addCategoryEntry('content-policy', i$.classDescription, i$.contractID, false, true);
-			registrar.registerFactory(i$.phClassID, i$.scheme, i$.phContractID, i$);
 		}
 
 		var i = Ci.nsITimer, uCheckTimer = Cc["@mozilla.org/timer;1"].createInstance(i);
