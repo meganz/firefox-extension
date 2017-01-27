@@ -75,7 +75,7 @@
 		if("gBrowser" in aWindow)
 			return aWindow.gBrowser;
 
-		return aWindow.BrowserApp.deck;
+		return aWindow.BrowserApp && aWindow.BrowserApp.deck;
 	};
 	const shutdown = function(func) {
 		SQ.push(func);
@@ -152,7 +152,7 @@
 			let channel;
 			if (aURI.path && (!aURI.schemeIs(this.scheme) || String(aURI.path).split('#').shift().replace(/\//g, ''))) {
 				uri = Services.io.newURI(megacuri, null, null);
-				uri = uri.resolve(aURI.path);
+				uri = uri.resolve(String(aURI.path).replace(/^\//, ''));
 			} else {
 				uri = megacuri + aURI.ref;
 			}
@@ -190,13 +190,14 @@
 		shouldLoad: function(x,y,z,n,m,t,p) {
 			if (y.schemeIs("http") || y.schemeIs("https")) {
 				
-				if(this._hosts[y.host] && y.path.split('#')[0] === '/') try {
+				if(this._hosts[y.host] && !~String(y.path).indexOf('.')) try {
 					switch(x) {
 						case 6:
 							if(~JSON.stringify(Components.stack).indexOf('"dch_handle"')) break;
 						case 7:
-							// y.spec = megacuri + y.ref;
-							y.spec = this.scheme + ':' + (y.hasRef ? '#' + y.ref : '');
+							y.spec = this.scheme + ':'
+										+ (y.hasRef ? '#' + y.ref
+										: (y.path ? '#' + String(y.path).replace(/^\//, '') : ''));
 							break;
 						case 3:
 						case 4:
