@@ -164,6 +164,12 @@
 			else {
 				channel = newChannel(uri);
 			}
+			if (aURI.schemeIs(this.scheme)) {
+				try {
+					aURI.spec = aURI.spec.replace(RegExp('^' + this.scheme + ':\\/+', 'i'), this.scheme + ':');
+				}
+				catch (ex) {}
+			}
 			channel.owner = mSystemPrincipal;
 			channel.originalURI = aURI;
 			return channel;
