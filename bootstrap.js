@@ -200,7 +200,7 @@
 			if (y.schemeIs("http") || y.schemeIs("https")) {
 				// if(this._hosts[y.host]) LOG('shouldLoad', y.path, y.spec, y);
 				
-				if(this._hosts[y.host] && !~String(y.path).indexOf('.')) try {
+				if(this._hosts[y.host] && !~String(y.path).indexOf('.') && String(y.path).substr(0,6) !== '/linux') try {
 					switch(x) {
 						case 6:
 							if(~JSON.stringify(Components.stack).indexOf('"dch_handle"')) break;
