@@ -81,16 +81,18 @@
 		SQ.push(func);
 	};
 	const globalMMListener = function(msg) {
-		// LOG(msg.name + ' ~~ ' + msg.data);
+		// LOG(msg.name + ' ~~ ' + msg.data, msg);
 		if (msg.data.substr(0,5) === 'mega:') {
 			var browser = msg.target;
 			if (browser.ownerGlobal) {
 				// browser.ownerGlobal.loadURI(msg.data);
 				var gBrowser = getBrowser(browser.ownerGlobal);
 				if (gBrowser) {
-					if (typeof gBrowser.updateBrowserRemoteness === 'function')
+					if (typeof gBrowser.updateBrowserRemoteness === 'function') {
 						gBrowser.updateBrowserRemoteness(browser, false);
+					}
 					browser.loadURIWithFlags(msg.data, 0x80|0x800,null,null,null);
+					// LOG('loadURIWithFlags', msg.data);
 				}
 			}
 		}
@@ -164,7 +166,7 @@
 			else {
 				channel = newChannel(uri);
 			}
-			if (aURI.schemeIs(this.scheme)) {
+			if (aURI.schemeIs(this.scheme) && ~String(aURI.spec).indexOf(':/')) {
 				try {
 					aURI.spec = aURI.spec.replace(RegExp('^' + this.scheme + ':\\/+', 'i'), this.scheme + ':');
 				}
@@ -194,7 +196,9 @@
 			"mega.nz"    : 1,
 		},
 		shouldLoad: function(x,y,z,n,m,t,p) {
+			// return ACCEPT;
 			if (y.schemeIs("http") || y.schemeIs("https")) {
+				// if(this._hosts[y.host]) LOG('shouldLoad', y.path, y.spec, y);
 				
 				if(this._hosts[y.host] && !~String(y.path).indexOf('.')) try {
 					switch(x) {
@@ -203,7 +207,7 @@
 						case 7:
 							y.spec = this.scheme + ':'
 										+ (y.hasRef ? '#' + y.ref
-										: (y.path ? '#' + String(y.path).replace(/^\//, '') : ''));
+										: (y.path ? '#' + String(y.path).replace(/^[/#]+/, '') : ''));
 							break;
 						case 3:
 						case 4:
@@ -339,6 +343,15 @@
 				return canLoadURIInProcess.apply(E10SUtils, arguments);
 			};
 		}
+		const getRemoteTypeForURI = E10SUtils && E10SUtils.getRemoteTypeForURI;
+		if (typeof getRemoteTypeForURI === 'function') {
+			E10SUtils.getRemoteTypeForURI = function(aURL, aMultiProcess, aPreferredRemoteType) {
+				var url = '' + aURL;
+				if (url.substr(0,chromens.length) == chromens || url.substr(0,5) == 'mega:')
+					return E10SUtils.NOT_REMOTE !== undefined ? E10SUtils.NOT_REMOTE : null;
+				return getRemoteTypeForURI.apply(E10SUtils, arguments);
+			};
+		}
 		// Workaround Bug 1247529
 		const SessionStorageInternal = getSessionStorage();
 		const ssCollect = SessionStorageInternal.collect;
@@ -386,6 +399,9 @@
 			}
 			if (typeof canLoadURIInProcess === 'function') {
 				E10SUtils.canLoadURIInProcess = canLoadURIInProcess;
+			}
+			if (typeof getRemoteTypeForURI === 'function') {
+				E10SUtils.getRemoteTypeForURI = getRemoteTypeForURI;
 			}
 			if (typeof ssCollect === 'function') {
 				SessionStorageInternal.collect = ssCollect;
