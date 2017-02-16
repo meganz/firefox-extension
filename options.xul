@@ -9,8 +9,8 @@
 	<setting pref="extensions.mega.dir" type="directory" title="&saveTo.label;">
 		Default location where downloads will be saved.
 	</setting>
-	<setting pref="extensions.mega.askdir" type="bool" title="&alwaysAsk.label;"></setting>
-	<setting pref="extensions.mega.notifydl" type="bool" title="&social.toggleNotifications.label;">
+	<setting pref="extensions.mega.askdir" type="bool" title="Always ask you where to save files"></setting>
+	<setting pref="extensions.mega.notifydl" type="bool" title="Show desktop notifications">
 		Whether a popup/alert notification for completed downloads should be shown.
 	</setting>
 </vbox>
