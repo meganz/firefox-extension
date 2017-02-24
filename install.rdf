@@ -9,6 +9,7 @@
 		<em:homepageURL>https://mega.nz/</em:homepageURL>
 		<em:updateURL><![CDATA[http://eu.static.mega.co.nz/3/update.rdf?version=%ITEM_VERSION%&application=%APP_ID%&appversion=%APP_VERSION%&status=%ITEM_STATUS%&os=%APP_OS%&locale=%APP_LOCALE%]]></em:updateURL>
 		<em:updateKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDb6ilOXeuKlG+zGEtJh0qKoI/n2SwiOEl1VsLfUz/OVMNsvHUFBLgsUWNZ32T3nVBmf4e67X4nKqqxmQu363ntOey5zG8fGoCcEOjj7LTlYbAc9WVa7OVpZVi7MhQ5T9P20uZMNSXnBs6HKi5Q0BAOd0w732IuQt4RuVQLPQvqeQIDAQAB</em:updateKey>
+		<em:multiprocessCompatible>true</em:multiprocessCompatible>
 		<em:bootstrap>true</em:bootstrap>
 		<em:type>2</em:type>
 		<em:targetApplication>
