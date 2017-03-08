@@ -283,7 +283,7 @@
 		let registrar;
 
 		if (addon.multiprocessCompatible) {
-			Services.ppmm.loadProcessScript('resource://mega/process-script.js?id=' + addon.psid, true);
+			// Services.ppmm.loadProcessScript('resource://mega/process-script.js?id=' + addon.psid, true);
 			try {
 				registrar = Cm.QueryInterface(Ci.nsIComponentRegistrar);
 				registrar.registerFactory(i$.phClassID, i$.scheme, i$.phContractID, i$);
@@ -372,8 +372,8 @@
 			uCheckTimer.cancel();
 
 			if (addon.multiprocessCompatible) {
-				Services.ppmm.broadcastAsyncMessage('mega:' + addon.psid, 'shutdown');
-				Services.ppmm.removeDelayedProcessScript('resource://mega/process-script.js?id=' + addon.psid);
+				// Services.ppmm.broadcastAsyncMessage('mega:' + addon.psid, 'shutdown');
+				// Services.ppmm.removeDelayedProcessScript('resource://mega/process-script.js?id=' + addon.psid);
 
 				later(function() {
 					registrar.unregisterFactory(i$.phClassID, i$);
