@@ -85,14 +85,18 @@
 		if (msg.data.substr(0,5) === 'mega:') {
 			var browser = msg.target;
 			if (browser.ownerGlobal) {
-				// browser.ownerGlobal.loadURI(msg.data);
-				var gBrowser = getBrowser(browser.ownerGlobal);
-				if (gBrowser) {
-					if (typeof gBrowser.updateBrowserRemoteness === 'function') {
-						gBrowser.updateBrowserRemoteness(browser, false);
+				if (typeof browser.ownerGlobal._loadURIWithFlags === 'function') {
+					browser.ownerGlobal._loadURIWithFlags(browser, msg.data, { flags: 0x80 | 0x800 });
+				}
+				else {
+					var gBrowser = getBrowser(browser.ownerGlobal);
+					if (gBrowser) {
+						if (typeof gBrowser.updateBrowserRemoteness === 'function') {
+							gBrowser.updateBrowserRemoteness(browser, false);
+						}
+						browser.loadURIWithFlags(msg.data, 0x80|0x800,null,null,null);
+						// LOG('loadURIWithFlags', msg.data);
 					}
-					browser.loadURIWithFlags(msg.data, 0x80|0x800,null,null,null);
-					// LOG('loadURIWithFlags', msg.data);
 				}
 			}
 		}
@@ -352,6 +356,14 @@
 				return getRemoteTypeForURI.apply(E10SUtils, arguments);
 			};
 		}
+		const getRemoteTypeForURIObject = E10SUtils && E10SUtils.getRemoteTypeForURIObject;
+		if (typeof getRemoteTypeForURIObject === 'function') {
+			E10SUtils.getRemoteTypeForURIObject = function(aURI, aMultiProcess, aPreferredRemoteType) {
+				if (String(aURI.spec).substr(0,chromens.length) == chromens || aURI.scheme == 'mega')
+					return E10SUtils.NOT_REMOTE !== undefined ? E10SUtils.NOT_REMOTE : null;
+				return getRemoteTypeForURIObject.apply(E10SUtils, arguments);
+			};
+		}
 		// Workaround Bug 1247529
 		const SessionStorageInternal = getSessionStorage();
 		const ssCollect = SessionStorageInternal.collect;
@@ -402,6 +414,9 @@
 			}
 			if (typeof getRemoteTypeForURI === 'function') {
 				E10SUtils.getRemoteTypeForURI = getRemoteTypeForURI;
+			}
+			if (typeof getRemoteTypeForURIObject === 'function') {
+				E10SUtils.getRemoteTypeForURIObject = getRemoteTypeForURIObject;
 			}
 			if (typeof ssCollect === 'function') {
 				SessionStorageInternal.collect = ssCollect;
