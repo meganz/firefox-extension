@@ -367,7 +367,7 @@
 		// Workaround Bug 1247529
 		const SessionStorageInternal = getSessionStorage();
 		const ssCollect = SessionStorageInternal.collect;
-		SessionStorageInternal.collect = function(aDocShell, aFrameTree) {
+		Object(SessionStorageInternal).collect = function(aDocShell, aFrameTree) {
 			let frameTree = [];
 			aFrameTree.forEach(function(frame) {
 				try {
