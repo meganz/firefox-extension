@@ -77,6 +77,9 @@
 
 		return aWindow.BrowserApp && aWindow.BrowserApp.deck;
 	};
+	const getURIRef = function(aURI) {
+		return (String(aURI.path).indexOf('/embed') !== -1 ? 'E' : '') + aURI.ref;
+	};
 	const shutdown = function(func) {
 		SQ.push(func);
 	};
@@ -160,7 +163,7 @@
 				uri = Services.io.newURI(megacuri, null, null);
 				uri = uri.resolve(String(aURI.path).replace(/^\//, ''));
 			} else {
-				uri = megacuri + aURI.ref;
+				uri = megacuri + getURIRef(aURI);
 			}
 			// LOG("newChannel2: " + aURI.spec + " -> " + uri, aURI, aLoadInfo);
 			if (aLoadInfo) {
@@ -210,7 +213,7 @@
 							if(~JSON.stringify(Components.stack).indexOf('"dch_handle"')) break;
 						case 7:
 							y.spec = this.scheme + ':'
-										+ (y.hasRef ? '#' + y.ref
+										+ (y.hasRef ? '#' + getURIRef(y)
 										: (y.path ? '#' + String(y.path).replace(/^[/#]+/, '') : ''));
 							break;
 						case 3:
@@ -244,7 +247,7 @@
 					try {
 						r.cancel(Cr.NS_BINDING_REDIRECTED);
 					} catch(e) {}
-					w.DOMWindow.location = megacuri + l.ref;
+					w.DOMWindow.location = megacuri + getURIRef(l);
 				}
 			} catch(e) {
 				reportError(e);
