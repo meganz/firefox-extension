@@ -281,7 +281,7 @@
 	const getSessionStorage = function() {
 		try {
 			let tmp = Cu.import('resource://app/modules/sessionstore/SessionStorage.jsm', {});
-			return tmp.SessionStorageInternal;
+			return tmp.SessionStorageInternal || false;
 		} catch(e) {}
 		
 		return false;
